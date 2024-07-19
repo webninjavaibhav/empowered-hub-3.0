@@ -7,7 +7,8 @@ import { initialSignUpState, signUpValidation } from "./constants";
 import useSignUp from "./hooks/useSignUp";
 
 function Login() {
-  const { handleSignUp, isLoading, error } = useSignUp();
+  const { handleSignUp, isLoading, error, currentQuoteIndex, quotes } =
+    useSignUp();
 
   const formik = useFormik({
     initialValues: initialSignUpState,
@@ -22,10 +23,11 @@ function Login() {
     <div className="w-screen bg-gradient-to-br from-fluorite to-topaz">
       {error && <>{error}</>}
       <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-center">
-        <Text className="p-6 font-caption text-center m-auto">
-          I use the empowered curriculum because it engages 99% of students from
-          the most active participant to your most quiet.
-          <div className="font-bold text-black">MEGAN K, AMES HS, IA</div>
+        <Text className="p-6 text-h5 font-body m-auto text-white">
+          {quotes[currentQuoteIndex]}
+          <div className="text-black font-h4 text-body-text">
+            MEGAN K, AMES HS, IA
+          </div>
         </Text>
         <FormikProvider value={formik}>
           <Form>

@@ -52,3 +52,13 @@ export const signUpValidation = Yup.object({
     User_State: Yup.string().required(),
     // password: Yup.string().required(),
 });
+
+
+
+
+export const quotes = [
+    "I use the empowered curriculum because it engages 99% of students from the most active participant to your most quiet.",
+    "Education is the most powerful weapon which you can use to change the world. - Nelson Mandela",
+    "The future of the world is in my classroom today. - Ivan Welton Fitzwater",
+    "Every student can learn, just not on the same day, or the same way. - George Evans",
+]
