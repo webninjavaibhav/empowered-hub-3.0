@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary colors  */
+  --sapphire: #001239;
+  --fluorite: #12d3cf;
+  --topaz: #0f93bc;
+
+  /* Grayscale colors  */
+  --white: #ffffff;
+  --ash: #f0f2f2;
+  --carbon: #53585f;
+  --cool: #333333;
+  --black: #000000;
+
+  /* Accent colors  */
+  --peridot: #ced642;
+  --citrine: #f6921e;
+  --ruby: #ed3340;
+
+  /* Font sizes  */
+  --h1: 48px;
+  --h2: 40px;
+  --h3: 30px;
+  --h4: 25px;
+  --h5: 20px;
+  --h6: 18px;
+  --body-text: 16px;
+  --button-text: 16px;
+  --filter-text: 14px;
+
+  --h1-weight: 800;
+  --h2-weight: 600;
+  --h3-weight: 600;
+  --h4-weight: 600;
+  --h5-weight: 700;
+  --h6-weight: 500;
+  --body-weight: 400;
+  --button-weight: 700;
+  --filter-weight: 400;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}

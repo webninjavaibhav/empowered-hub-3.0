@@ -1,0 +1,57 @@
+.field {
+  position: relative;
+}
+
+/* customized the input field element property */
+.field .input {
+  height: 64px;
+  font-size: 16px;
+  margin: 10px 0px;
+  border-radius: 8px;
+  padding: 25px 12px 2px 12px;
+  border: 1px solid var(--carbon);
+}
+
+.field .input::placeholder {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.field .input .required {
+  border: 1px solid var(--citrine);
+}
+
+.field > .input.valid {
+  border: 1px solid var(--fluorite);
+}
+
+.field > .input.invalid {
+  border: 1px solid var(--ruby);
+}
+
+.field .input:focus {
+  outline: none;
+  border: 1px solid var(--black);
+}
+
+.field span {
+  left: 0;
+  top: 16px;
+  padding: 16px;
+  font-size: 12px;
+  position: absolute;
+  pointer-events: none;
+  color: var(--carbon);
+  transform: translateY(-12px) translateX(-5px) scale(0.95);
+}
+
+.field .right-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--carbon);
+  z-index: 10;
+  pointer-events: auto;
+}

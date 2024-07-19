@@ -1,0 +1,36 @@
+.btn {
+  height: 50px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--button-text);
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.btn-primary {
+  background-color: var(--sapphire);
+  color: var(--white);
+}
+
+.btn-primary-outline {
+  color: var(--sapphire);
+}
+
+.btn-secondary {
+  background-color: var(--fluorite);
+  color: var(--black);
+}
+
+.btn-tertiary {
+  background-color: var(--topaz);
+  color: var(--white);
+}
