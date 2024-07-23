@@ -107,7 +107,7 @@ const BuilderForm: React.FC<QuestionProps> = ({
         >
           {step ? (
             <CustomButton
-              className="btn-secondary-outline me-2 w-[140px]"
+              className="btn-secondary-outline me-2 max-w-[140px]"
               onClick={onPrev}
               iconLeft={
                 <img
@@ -130,7 +130,7 @@ const BuilderForm: React.FC<QuestionProps> = ({
                 alt=">"
               />
             }
-            className="btn-secondary w-[120px] ms-2"
+            className="btn-secondary max-w-[120px] ms-2"
             onClick={onNext}
             disabled={!selectedOption}
           >

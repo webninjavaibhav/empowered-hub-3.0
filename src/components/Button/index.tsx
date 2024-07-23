@@ -31,7 +31,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
         {...rest}
         type={type}
         onClick={onClick}
-        className={clsx("btn rounded-sm w-full my-2", className)}
+        className={clsx("btn rounded-sm px-4", className)}
         disabled={disabled || isLoading}
       >
         {iconLeft && <span>{iconLeft}</span>}
