@@ -1,8 +1,16 @@
+import { Route, Routes } from "react-router";
+
+import Home from "../pages/private/Home";
+
 function PrivateRoutes() {
   return (
     <div className="bg-tapoz">
-      This is admin page
-      <button>Click here</button>
+      <Routes>
+        <Route
+          path="home"
+          element={<Home />}
+        />
+      </Routes>
     </div>
   );
 }

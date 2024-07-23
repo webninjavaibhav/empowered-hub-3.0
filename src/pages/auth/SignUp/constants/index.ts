@@ -11,14 +11,14 @@ import * as Yup from "yup";
 // User_Country
 
 
-
 export type UserSignUpProps = {
     firstName: string;
     lastName: string;
     User_ZipCode: string;
     User_City: string;
     User_State: string;
-    // email: string;
+    email: string;
+    login: string;
     // password: string;
     User_Role?: string;
     User_County?: string;
@@ -31,7 +31,8 @@ export const initialSignUpState: UserSignUpProps = {
     User_ZipCode: "",
     User_City: "",
     User_State: "",
-    // email: "",
+    email: "",
+    login: "", // for addional field for okta auth 
     // password: "",
 }
 
@@ -45,9 +46,9 @@ export const signUpValidation = Yup.object({
         .max(20, "Last name must be less than 20 characters")
         .required("Last name is required"),
     User_ZipCode: Yup.string().required(),
-    // email: Yup.string()
-    //     .email('Invalid email address')
-    //     .required('Email is required'),
+    email: Yup.string()
+        .email('Invalid email address')
+        .required('Email is required'),
     User_City: Yup.string().required(),
     User_State: Yup.string().required(),
     // password: Yup.string().required(),

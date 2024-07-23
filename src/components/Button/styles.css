@@ -22,12 +22,18 @@
 }
 
 .btn-primary-outline {
+  border: 3px solid var(--sapphire);
   color: var(--sapphire);
 }
 
 .btn-secondary {
   background-color: var(--fluorite);
   color: var(--black);
+}
+
+.btn-secondary-outline {
+  border: 3px solid var(--fluorite);
+  color: var(--fluorite);
 }
 
 .btn-tertiary {

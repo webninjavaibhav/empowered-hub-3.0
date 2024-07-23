@@ -47,3 +47,31 @@ body {
   padding: 0px;
   box-sizing: border-box;
 }
+
+input[type="radio"] {
+  padding: 2px;
+  width: 16px;
+  height: 16px;
+  appearance: none;
+  border-radius: 50%;
+  background-clip: content-box;
+  background-color: var(--white);
+  border: 2px solid var(--carbon);
+}
+
+input[type="radio"]:checked {
+  background-color: var(--fluorite);
+  border: 2px solid var(--fluorite);
+}
+
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0px 10px 0px 0px;
+  accent-color: var(--fluorite);
+}
+
+/* Selection property  */
+::selection {
+  color: var(--topaz);
+}
