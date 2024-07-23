@@ -60,7 +60,7 @@ function Login() {
                     type="submit"
                     onClick={() => ""}
                     disabled={false}
-                    className="btn-secondary border-none mt-6 font-button "
+                    className="btn-secondary border-none mt-6 font-button w-full"
                   >
                     Sign In
                   </CustomButton>

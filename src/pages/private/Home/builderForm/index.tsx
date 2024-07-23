@@ -43,7 +43,7 @@ const BuilderForm: React.FC<QuestionProps> = ({
           currentStep={Number(step)}
         />
       </div>
-      <div className="w-2/3 m-4 flex flex-col justify-between">
+      <div className="w-2/3 m-4 ps-10 flex flex-col justify-between">
         <div>
           <div className="mb-4 text-center">
             <div className="text-h5 font-h5">{question}</div>

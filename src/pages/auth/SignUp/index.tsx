@@ -112,7 +112,7 @@ function Login() {
                     type="submit"
                     isLoading={isLoading}
                     disabled={false}
-                    className="btn-secondary border-none font-button mt-4"
+                    className="btn-secondary border-none font-button mt-4 w-full"
                   >
                     Sign Up
                   </CustomButton>

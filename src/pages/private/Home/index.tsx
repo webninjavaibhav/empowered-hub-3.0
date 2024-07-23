@@ -52,8 +52,8 @@ const Home: React.FC = () => {
       <FormikProvider value={formik}>
         <Form>
           {/* Modal container */}
-          <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-gray-800 bg-opacity-50">
-            <div className="bg-white rounded-lg shadow-lg flex p-[25px] overflow-auto">
+          <div className="top-0 left-0 flex items-center justify-center w-full h-full bg-gray-800 bg-opacity-50">
+            <div className="bg-white rounded-lg shadow-lg flex p-[25px] w-1/2 max-h-2/3 overflow-auto">
               <BuilderForm
                 step={step}
                 question={present.question}
