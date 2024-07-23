@@ -1,22 +1,15 @@
 import React, { useState } from "react";
-import CustomButton from "../../../components/Button";
-import Images from "../../../assets";
-import { steps } from "./constants";
-import Stepper from "../../../components/Stepper";
+import CustomButton from "../../../../components/Button";
+import Images from "../../../../assets";
+import { steps } from "../constants";
+import Stepper from "../../../../components/Stepper";
 import clsx from "clsx";
 
 interface Option {
-  description: string;
-  subDescription?: string;
+  label: string;
+  subLabel?: string;
   icon?: string;
   type: string;
-}
-
-interface RightItems {
-  title: string;
-  img: string;
-  description?: string;
-  header?: string;
 }
 
 interface QuestionProps {
@@ -24,7 +17,6 @@ interface QuestionProps {
   question: string;
   description: string;
   options: Option[];
-  rightItems: RightItems;
   onNext: () => void;
   onPrev: () => void;
 }
@@ -40,7 +32,7 @@ const BuilderForm: React.FC<QuestionProps> = ({
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const handleOptionChange = (option: Option) => {
-    setSelectedOption(option.description);
+    setSelectedOption(option.label);
   };
 
   return (
@@ -72,17 +64,15 @@ const BuilderForm: React.FC<QuestionProps> = ({
                 <input
                   aria-label="some"
                   type="checkbox"
-                  checked={option.description === selectedOption}
+                  checked={option.label === selectedOption}
                   onChange={() => handleOptionChange(option)}
                 />
               )}
               <div className="flex justify-between w-full">
                 <div>
-                  <p className="text-base font-medium">{option.description}</p>
-                  {option.subDescription && (
-                    <p className="text-sm text-carbon">
-                      {option.subDescription}
-                    </p>
+                  <p className="text-base font-medium">{option.label}</p>
+                  {option.subLabel && (
+                    <p className="text-sm text-carbon">{option.subLabel}</p>
                   )}
                 </div>
                 <div className="me-4">
@@ -90,7 +80,7 @@ const BuilderForm: React.FC<QuestionProps> = ({
                     <input
                       aria-label="some"
                       type="radio"
-                      checked={option.description === selectedOption}
+                      checked={option.label === selectedOption}
                       onChange={() => handleOptionChange(option)}
                     />
                   )}

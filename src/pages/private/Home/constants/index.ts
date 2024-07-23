@@ -8,147 +8,155 @@ export type StepperProp = {
 
 export const questions: any[] = [
     {
-        id: 0,
         question: "Which role best describes you?",
         description: "You can only choose one role",
+        field: "role",
+        inputType: "radio",
+        multiselect: false,
         options: [
             {
-                description: "Administrator/Director",
-                subDescription: "Primarily works with educators, not students.",
+                value: "administrator",
+                label: "Administrator/Director",
+                subLabel: "Primarily works with educators, not students.",
                 icon: Images.administration,
-                type: "radio",
             },
             {
-                description: "Educator",
-                subDescription: "Works most directly with students",
+                value: "educator",
+                label: "Educator",
+                subLabel: "Works most directly with students",
                 icon: Images.educator,
-                type: "radio",
             },
             {
-                description: "Community",
-                subDescription: "A supporter of education initiatives",
+                value: "community",
+                label: "Community",
+                subLabel: "A supporter of education initiatives",
                 icon: Images.community,
-                type: "radio",
             },
             {
-                description: "Student",
-                subDescription:
+                value: "student",
+                label: "Student",
+                subLabel:
                     "A student in a formal or informal learning environment",
                 icon: Images.student,
-                type: "radio",
             },
         ],
     },
     {
-        id: 1,
         question: "What is your school or learning setting type?",
         description: "You can only choose multiple option.",
+        field: "settingType",
+        inputType: "checkbox",
+        multiselect: true,
         options: [
             {
-                description: "Public School ",
-                type: "checkbox",
+                value: "publicSchool",
+                label: "Public School"
             },
             {
-                description: "Private School",
-                type: "checkbox",
+                value: "privateSchool",
+                label: "Private School"
             },
             {
-                description: "Faith Based School ",
-                type: "checkbox",
+                value: "faithBasedSchool",
+                label: "Faith Based School"
             },
             {
-                description: "Home School ",
-                type: "checkbox",
+                value: "homeSchool",
+                label: "Home School"
             },
             {
-                description: "Charter School ",
-                type: "checkbox",
+                value: "charterSchool",
+                label: "Charter School"
             },
             {
-                description: "Virtual/Online School ",
-                type: "checkbox",
+                value: "virtualSchool",
+                label: "Virtual/Online School"
             },
             {
-                description: "Micro School ",
-                type: "checkbox",
+                value: "microSchool",
+                label: "Micro School"
             },
             {
-                description: "After School Program",
-                type: "checkbox",
+                value: "afterSchoolProgram",
+                label: "After School Program"
             },
             {
-                description: "Other ",
-                type: "checkbox",
+                value: "other",
+                label: "Other"
             },
         ],
     },
     {
-        id: 2,
         question: "What grade levels do you work with?",
         description: "You can only choose one option.",
+        field: "grade",
+        inputType: "checkbox",
+        multiselect: false,
         options: [
             {
-                description: "K-2",
-                type: "checkbox",
+                value: "k2",
+                label: "K-2"
             },
             {
-                description: "3-5",
-                type: "checkbox",
+                value: "3_5",
+                label: "3-5"
             },
             {
-                description: "6-8",
-                type: "checkbox",
+                value: "6_8",
+                label: "6-8"
             },
             {
-                description: "9-12",
-                type: "checkbox",
+                value: "9_12",
+                label: "9-12"
             },
             {
-                description: "Higher Education",
-                type: "checkbox",
+                value: "higherEducation",
+                label: "Higher Education"
             },
             {
-                description: "Adult Learners",
-                type: "checkbox",
+                value: "adultLearners",
+                label: "Adult Learners"
             },
         ],
     },
     {
-        id: 3,
-        question: "What grade levels do you work with?",
+        question: "Subject taught",
         description: "You can only choose one option.",
+        field: "subjectTaught",
+        type: "checkbox",
+        multiselect: true,
         options: [
             {
-                description: "Math",
-                type: "checkbox",
+                value: "math",
+                label: "Math"
             },
             {
-                description: "English",
-                type: "checkbox",
+                value: "english",
+                label: "English"
             },
             {
-                description: "Science",
-                type: "checkbox",
+                value: "science",
+                label: "Science"
             },
             {
-                description: "Social Studies/History",
-                type: "checkbox",
+                value: "socialStudy",
+                label: "Social Studies/History"
             },
             {
-                description: "STEM",
-                type: "checkbox",
+                value: "stem",
+                label: "STEM"
             },
             {
-                description: "Business and Entrepreneurship",
-                type: "checkbox",
+                value: "businessAnEnterpreneurship",
+                label: "Business and Entrepreneurship"
             },
             {
-                description: "Human Service",
-                type: "checkbox",
+                value: "humanService",
+                label: "Human Service"
             },
             {
-                description: "Finance",
-                type: "checkbox",
+                value: "finance",
+                label: "Finance"
             },
         ],
     },
