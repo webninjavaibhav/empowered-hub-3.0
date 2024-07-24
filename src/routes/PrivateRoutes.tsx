@@ -8,6 +8,7 @@ function PrivateRoutes() {
   return (
     <div className=" bg-white h-[100vh]">
       <Navbar />
+
       <Routes>
         <Route
           path="home"

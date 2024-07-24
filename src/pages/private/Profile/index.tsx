@@ -17,7 +17,7 @@ function Profile() {
         <Form>
           <div className="bg-white m-10 rounded-2xl p-[45px] border border-sapphire">
             <div className="text-h5 font-h4 overflow-auto">Update Profile</div>
-            <div className="grid grid-cols-2 gap-x-4">
+            <div className="grid grid-cols-2 gap-4">
               <TextInput
                 id="firstName"
                 type="text"

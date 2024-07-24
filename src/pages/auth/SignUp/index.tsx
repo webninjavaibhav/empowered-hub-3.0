@@ -28,12 +28,12 @@ function Login() {
                   Kindly fill in your details below to create an account
                 </Text>
                 <div className="">
-                  <div className="flex justify-around">
+                  <div className="flex justify-around gap-4">
                     <TextInput
                       id="firstName"
                       name="firstName"
                       label="First Name"
-                      className="w-full me-4"
+                      className="w-full"
                       type="text"
                     />
                     <TextInput
@@ -48,14 +48,15 @@ function Login() {
                     id="User_State"
                     name="User_State"
                     label="State"
+                    className="my-4"
                     type="text"
                   />
-                  <div className="flex justify-around">
+                  <div className="flex justify-around gap-4">
                     <TextInput
                       id="User_ZipCode"
                       name="User_ZipCode"
                       label="Zip Code"
-                      className="w-full me-4"
+                      className="w-full"
                       type="text"
                     />
                     <TextInput
@@ -72,6 +73,7 @@ function Login() {
                     name="email"
                     label="Email"
                     type="text"
+                    className="my-4"
                   />
 
                   <TextInput

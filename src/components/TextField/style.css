@@ -6,7 +6,6 @@
 .field .input {
   height: 64px;
   font-size: 16px;
-  margin: 10px 0px;
   border-radius: 8px;
   padding: 25px 12px 2px 12px;
   border: 1px solid var(--carbon);
@@ -36,7 +35,7 @@
 
 .field span {
   left: 0;
-  top: 16px;
+  top: 6px;
   padding: 16px;
   font-size: 12px;
   position: absolute;

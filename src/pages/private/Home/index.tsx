@@ -11,6 +11,9 @@ const Home: React.FC = () => {
 
   return (
     <div className="w-screen h-screen overflow-hidden">
+      <div className=" text-center p-10 font-h1 text-h1">
+        Welcome to the Hub 3.0
+      </div>
       <Modal
         autoClose={false}
         onClose={() => setFormModal(false)}

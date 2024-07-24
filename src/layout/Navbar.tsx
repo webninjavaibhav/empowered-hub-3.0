@@ -15,7 +15,7 @@ function Navbar() {
 
   return (
     <div>
-      <div className="flex flex-wrap items-center justify-between p-4 bg-gray-200 bg-carbon text-white">
+      <div className="flex flex-wrap items-center justify-between p-4 bg-sapphire text-white">
         <Link
           to="/home"
           className="self-center text-2xl font-semibold whitespace-nowrap"

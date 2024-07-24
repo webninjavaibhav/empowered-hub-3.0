@@ -3,7 +3,7 @@ import { questions } from "../constants";
 
 const useHome = () => {
   const [step, setStep] = useState(0);
-  const [formModal, setFormModal] = useState(false);
+  const [formModal, setFormModal] = useState(true);
 
   const handleNext = () => {
     if (step < questions.length - 1) {

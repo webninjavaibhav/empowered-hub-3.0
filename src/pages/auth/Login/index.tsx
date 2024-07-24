@@ -23,7 +23,7 @@ function Login() {
                 <Text className="font-light text-sm text-slate-400">
                   Kindly fill in your Email and Password
                 </Text>
-                <div className="">
+                <div className="flex gap-4 flex-col mt-4">
                   <TextInput
                     id="email"
                     name="email"
@@ -54,7 +54,7 @@ function Login() {
                     type="submit"
                     onClick={() => ""}
                     disabled={false}
-                    className="btn-secondary border-none mt-6 font-button w-full"
+                    className="btn-secondary border-none font-button w-full"
                   >
                     Sign In
                   </CustomButton>
