@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import { quotes, UserSignUpProps } from "../constants";
+import { initialSignUpState, quotes, signUpValidation, UserSignUpProps } from "../constants";
 import { END_POINTS } from "../../../../services/endpoints";
+import { useFormik } from "formik";
 
 
 const useSignUp = () => {
@@ -12,17 +13,23 @@ const useSignUp = () => {
     const [error, setError] = useState<any>(null);
 
 
+    const formik = useFormik({
+        initialValues: initialSignUpState,
+        onSubmit: async (values) => {
+            let res = await handleSignUp(values);
+            console.log("response", res);
+        },
+        validationSchema: signUpValidation,
+    });
+
+
     const handleSignUp = async (values: UserSignUpProps) => {
         values["User_Role"] = "user"
         values["User_County"] = "state"
         values["User_Country"] = "united state"
         values["login"] = values.email
 
-        let f1 = {
-            "profile": {
-                ...values
-            }
-        }
+        let f1 = { "profile": { ...values } }
 
         setIsLoading(true);
         setError(null);
@@ -63,7 +70,7 @@ const useSignUp = () => {
 
 
     return {
-        handleSignUp,
+        formik,
         isLoading,
         error,
         currentQuoteIndex,

@@ -20,7 +20,8 @@ interface RightItems {
 }
 
 interface QuestionProps {
-  step: number | string;
+  step: number;
+  maxStep: number;
   question: string;
   description: string;
   options: Option[];
@@ -31,6 +32,7 @@ interface QuestionProps {
 
 const BuilderForm: React.FC<QuestionProps> = ({
   step,
+  maxStep,
   question,
   description,
   options,
@@ -45,7 +47,7 @@ const BuilderForm: React.FC<QuestionProps> = ({
 
   return (
     <>
-      <div className="w-1/3 bg-gray-200 pt-4 flex justify-center ounded-b-lg">
+      <div className="w-1/3 bg-gray-200 pt-4 flex me-4 justify-center ounded-b-lg">
         <Stepper
           steps={steps}
           currentStep={Number(step)}
@@ -102,10 +104,10 @@ const BuilderForm: React.FC<QuestionProps> = ({
         <div
           className={clsx(
             "flex me-4",
-            step ? "justify-between" : "justify-end"
+            step && step < maxStep ? "justify-between" : "justify-end"
           )}
         >
-          {step ? (
+          {step && step < maxStep ? (
             <CustomButton
               className="btn-secondary-outline me-2 w-[140px]"
               onClick={onPrev}
@@ -122,20 +124,30 @@ const BuilderForm: React.FC<QuestionProps> = ({
             </CustomButton>
           ) : null}
 
-          <CustomButton
-            iconRight={
-              <img
-                className="ms-4"
-                src={Images.nextIcon}
-                alt=">"
-              />
-            }
-            className="btn-secondary w-[120px] ms-2"
-            onClick={onNext}
-            disabled={!selectedOption}
-          >
-            Next
-          </CustomButton>
+          {step < maxStep ? (
+            <CustomButton
+              iconRight={
+                <img
+                  className="ms-4"
+                  src={Images.nextIcon}
+                  alt=">"
+                />
+              }
+              className="btn-secondary w-[120px] ms-2"
+              onClick={onNext}
+              disabled={!selectedOption}
+            >
+              Next
+            </CustomButton>
+          ) : (
+            <CustomButton
+              className="btn-secondary w-[120px] ms-2"
+              onClick={onNext}
+              disabled={!selectedOption}
+            >
+              Continue
+            </CustomButton>
+          )}
         </div>
       </div>
     </>
