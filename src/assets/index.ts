@@ -17,6 +17,8 @@ import principles from './images/posters/step2.svg'
 import belive from './images/posters/step4.svg'
 import value from './images/posters/step3.svg'
 
+import john from './images/jon.svg'
+
 const Images = {
     logo,
     swipe,
@@ -37,6 +39,8 @@ const Images = {
     poster2: principles,
     poster3: value,
     poster4: belive,
+
+    john
 }
 
 export default Images;

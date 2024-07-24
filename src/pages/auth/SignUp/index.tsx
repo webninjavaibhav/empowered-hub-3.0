@@ -2,22 +2,12 @@ import Images from "../../../assets";
 import Text from "../../../components/Text";
 import CustomButton from "../../../components/Button";
 import TextInput from "../../../components/TextField";
-import { Form, FormikProvider, useFormik } from "formik";
-import { initialSignUpState, signUpValidation } from "./constants";
+import { Form, FormikProvider } from "formik";
 import useSignUp from "./hooks/useSignUp";
+import { Link } from "react-router-dom";
 
 function Login() {
-  const { handleSignUp, isLoading, error, currentQuoteIndex, quotes } =
-    useSignUp();
-
-  const formik = useFormik({
-    initialValues: initialSignUpState,
-    onSubmit: async (values) => {
-      let res = await handleSignUp(values);
-      console.log("REspoasjidfos", res);
-    },
-    validationSchema: signUpValidation,
-  });
+  const { formik, isLoading, error, currentQuoteIndex, quotes } = useSignUp();
 
   return (
     <div className="w-screen bg-gradient-to-br from-fluorite to-topaz">
@@ -107,7 +97,6 @@ function Login() {
                       Privacy Policy.
                     </span>
                   </Text>
-
                   <CustomButton
                     type="submit"
                     isLoading={isLoading}
@@ -137,9 +126,11 @@ function Login() {
                   </CustomButton>
                   <div className="text-center">
                     Already have an account?{" "}
-                    <span className="text-topaz font-bold underline">
-                      Sign in
-                    </span>
+                    <Link to="/login">
+                      <span className="text-topaz font-bold underline">
+                        Sign in
+                      </span>
+                    </Link>
                   </div>
                 </div>
               </div>
