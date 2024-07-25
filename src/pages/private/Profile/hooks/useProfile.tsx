@@ -19,7 +19,7 @@ const useProfile = () => {
         const response = await fetch(
           `${END_POINTS.OKTA_BASE_URL}api/v1/users/${userId}`,
           {
-            method: "PUT",
+            method: "POST",
             body: JSON.stringify(formate),
             headers: {
               Authorization: `SSWS ${END_POINTS.OKTA_AUTH_TOKEN}`,

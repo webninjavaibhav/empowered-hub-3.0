@@ -1,16 +1,5 @@
 import * as Yup from "yup";
 
-// not available okta fields
-// Role
-// User_Role
-
-// Country
-// User_County
-
-// Country
-// User_Country
-
-
 export type UserSignUpProps = {
     firstName: string;
     lastName: string;
@@ -19,7 +8,6 @@ export type UserSignUpProps = {
     User_State: string;
     email: string;
     login: string;
-    // password: string;
     User_Role?: string;
     User_County?: string;
     User_Country?: string;
@@ -32,8 +20,7 @@ export const initialSignUpState: UserSignUpProps = {
     User_City: "",
     User_State: "",
     email: "",
-    login: "", // for addional field for okta auth 
-    // password: "",
+    login: "",
 }
 
 export const signUpValidation = Yup.object({
@@ -51,7 +38,6 @@ export const signUpValidation = Yup.object({
         .required('Email is required'),
     User_City: Yup.string().required(),
     User_State: Yup.string().required(),
-    // password: Yup.string().required(),
 });
 
 

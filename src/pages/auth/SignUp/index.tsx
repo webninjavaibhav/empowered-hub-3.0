@@ -76,28 +76,25 @@ function Login() {
                     className="my-4"
                   />
 
-                  <TextInput
-                    id="password"
-                    name="password"
-                    label="Password"
-                    type="password"
-                    rightIcon={
-                      <img
-                        src={Images.closeEye}
-                        alt="Close eye"
-                      />
-                    }
-                  />
-
                   <Text className="font-light text-sm text-slate-600 my-2">
                     By creating an account, you agree to the{" "}
-                    <span className="underline cursor-pointer">
+                    <a
+                      target="_blank"
+                      rel="noopener"
+                      href="https://teachempowered.org/terms-of-use"
+                      className="underline cursor-pointer"
+                    >
                       Terms of use
-                    </span>{" "}
+                    </a>{" "}
                     and{" "}
-                    <span className="underline cursor-pointer">
+                    <a
+                      target="_blank"
+                      rel="noopener"
+                      href="https://www.mightynetworks.com/privacy-policy"
+                      className="underline cursor-pointer"
+                    >
                       Privacy Policy.
-                    </span>
+                    </a>
                   </Text>
                   <CustomButton
                     type="submit"

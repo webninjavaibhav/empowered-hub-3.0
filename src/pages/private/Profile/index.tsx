@@ -10,7 +10,6 @@ function Profile() {
   if (isLoading) {
     return <Loader />;
   }
-
   return (
     <div className="px-2 flex justify-center">
       <FormikProvider value={formik}>
