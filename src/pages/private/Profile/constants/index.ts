@@ -39,11 +39,8 @@ export const profileValidation = Yup.object({
         .min(3, "Last name must be at least 3 characters")
         .max(20, "Last name must be less than 20 characters")
         .required("Last name is required"),
-    User_ZipCode: Yup.string().required(),
     email: Yup.string()
         .email('Invalid email address')
         .required('Email is required'),
-    User_City: Yup.string().required(),
-    User_State: Yup.string().required(),
 });
 

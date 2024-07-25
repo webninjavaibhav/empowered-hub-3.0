@@ -31,7 +31,7 @@ const TextInput: React.FC<TextInputProps> = ({
     (!!didFocus && field?.value?.trim().length > 2) || meta.touched;
 
   return (
-    <div className={`field ${className}`}>
+    <div className={`field ${clsx(className && className)}`}>
       <input
         {...rest}
         {...field}

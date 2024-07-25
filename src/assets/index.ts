@@ -11,11 +11,13 @@ import administration from './images/adminstration.svg'
 import educator from './images/educator.svg'
 import student from './images/student.svg'
 import community from './images/community.svg'
+import logo2 from './images/logo2.svg'
 
-import impoweredPoseter from './images/posters/step1.svg'
-import principles from './images/posters/step2.svg'
-import belive from './images/posters/step4.svg'
-import value from './images/posters/step3.svg'
+import user from './images/user.png'
+import user2 from './images/user1.png'
+import user3 from './images/user2.png'
+import user4 from './images/user3.png'
+
 
 import john from './images/jon.svg'
 
@@ -33,14 +35,13 @@ const Images = {
     educator,
     community,
     student,
+    john,
+    logo2,
 
-    //posters
-    poster1: impoweredPoseter,
-    poster2: principles,
-    poster3: value,
-    poster4: belive,
-
-    john
+    user,
+    user2,
+    user3,
+    user4,
 }
 
 export default Images;

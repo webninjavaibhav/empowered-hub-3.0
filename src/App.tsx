@@ -1,9 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import PrivateRoutes from "./routes/PrivateRoutes";
 import Login from "./pages/auth/Login";
 import SignUp from "./pages/auth/SignUp";
 import Auth from "./helpers/Auth";
+import Boarding from "./pages/auth/Boarding";
+import Home from "./pages/private/Home";
+import Profile from "./pages/private/Profile";
 
 function App() {
   return (
@@ -12,8 +14,13 @@ function App() {
         <Routes>
           <Route element={<Auth />}>
             <Route
-              path="/*"
-              element={<PrivateRoutes />}
+              index
+              path="/home"
+              element={<Home />}
+            />
+            <Route
+              path="/profile"
+              element={<Profile />}
             />
           </Route>
           <Route
@@ -26,7 +33,7 @@ function App() {
           />
           <Route
             path="*"
-            element={<h2>Page not found</h2>}
+            element={<Boarding />}
           />
         </Routes>
       </BrowserRouter>

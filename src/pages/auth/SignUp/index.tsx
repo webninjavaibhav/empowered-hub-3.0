@@ -7,13 +7,19 @@ import useSignUp from "./hooks/useSignUp";
 import { Link } from "react-router-dom";
 
 function Login() {
-  const { formik, isLoading, error, currentQuoteIndex, quotes } = useSignUp();
+  const { formik, isLoading, error, currentQuoteIndex, quotes, images } =
+    useSignUp();
 
   return (
-    <div className="w-screen bg-gradient-to-br from-fluorite to-topaz h-[100vh]">
+    <div className="bg-gradient-to-br from-fluorite to-topaz">
       {error && <>{error}</>}
       <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-center h-full">
         <Text className="p-6 text-h5 font-body m-auto text-white">
+          <img
+            src={images[currentQuoteIndex]}
+            className="h-[120px]"
+            alt="profile"
+          />
           {quotes[currentQuoteIndex]}
           <div className="text-black font-h4 text-body-text">
             MEGAN K, AMES HS, IA
@@ -44,6 +50,15 @@ function Login() {
                       type="text"
                     />
                   </div>
+
+                  <TextInput
+                    id="email"
+                    name="email"
+                    label="Email"
+                    type="text"
+                    className="my-4"
+                  />
+
                   <TextInput
                     id="User_State"
                     name="User_State"
@@ -67,14 +82,6 @@ function Login() {
                       type="text"
                     />
                   </div>
-
-                  <TextInput
-                    id="email"
-                    name="email"
-                    label="Email"
-                    type="text"
-                    className="my-4"
-                  />
 
                   <div className="flex">
                     <div className="mt-2">
