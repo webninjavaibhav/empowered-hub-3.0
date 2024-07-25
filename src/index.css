@@ -48,6 +48,10 @@ body {
   box-sizing: border-box;
 }
 
+a {
+  color: var(--fluorite);
+}
+
 input[type="radio"] {
   padding: 2px;
   width: 16px;

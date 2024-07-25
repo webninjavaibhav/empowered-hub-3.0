@@ -10,9 +10,9 @@ function Login() {
   const { formik, isLoading, error, currentQuoteIndex, quotes } = useSignUp();
 
   return (
-    <div className="w-screen bg-gradient-to-br from-fluorite to-topaz">
+    <div className="w-screen bg-gradient-to-br from-fluorite to-topaz h-[100vh]">
       {error && <>{error}</>}
-      <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-center h-full">
         <Text className="p-6 text-h5 font-body m-auto text-white">
           {quotes[currentQuoteIndex]}
           <div className="text-black font-h4 text-body-text">
@@ -20,8 +20,8 @@ function Login() {
           </div>
         </Text>
         <FormikProvider value={formik}>
-          <Form>
-            <div className="flex py-[84px] px-[89px] justify-center items-center bg-white overflow-scroll md:rounded-s-[80px]">
+          <Form className="h-full">
+            <div className="flex py-[84px] px-[89px] justify-center items-center bg-white overflow-scroll md:rounded-s-[80px] h-full">
               <div className="w-full">
                 <Text className="font-h4 text-h3">Create an account</Text>
                 <Text className="font-light text-sm text-slate-400 my-2">
@@ -76,31 +76,50 @@ function Login() {
                     className="my-4"
                   />
 
-                  <Text className="font-light text-sm text-slate-600 my-2">
-                    By creating an account, you agree to the{" "}
-                    <a
-                      target="_blank"
-                      rel="noopener"
-                      href="https://teachempowered.org/terms-of-use"
-                      className="underline cursor-pointer"
-                    >
-                      Terms of use
-                    </a>{" "}
-                    and{" "}
-                    <a
-                      target="_blank"
-                      rel="noopener"
-                      href="https://www.mightynetworks.com/privacy-policy"
-                      className="underline cursor-pointer"
-                    >
-                      Privacy Policy.
-                    </a>
-                  </Text>
+                  <div className="flex">
+                    <div className="mt-2">
+                      <input
+                        aria-label="term and condition"
+                        type="checkbox"
+                      />
+                    </div>
+                    <Text className="font-light text-sm text-slate-600 my-2">
+                      You agree to the{" "}
+                      <a
+                        target="_blank"
+                        rel="noopener"
+                        href="https://teachempowered.org/terms-of-use"
+                        className="underline cursor-pointer"
+                      >
+                        Empowered Hub Terms of Use
+                      </a>
+                      {"   "}
+                      and the{" "}
+                      <a
+                        target="_blank"
+                        rel="noopener"
+                        href="https://www.mightynetworks.com/terms-of-use"
+                        className="underline cursor-pointer"
+                      >
+                        Mighty Networks Terms of Use
+                      </a>{" "}
+                      and{" "}
+                      <a
+                        target="_blank"
+                        rel="noopener"
+                        href="https://www.mightynetworks.com/privacy-policy"
+                        className="underline cursor-pointer"
+                      >
+                        {" "}
+                        Privacy Policy.
+                      </a>
+                    </Text>
+                  </div>
                   <CustomButton
                     type="submit"
                     isLoading={isLoading}
                     disabled={false}
-                    className="btn-secondary border-none font-button mt-4 w-full"
+                    className="btn-secondary border-none font-button mt-4 mb-2 w-full"
                   >
                     Sign Up
                   </CustomButton>
@@ -112,7 +131,7 @@ function Login() {
                   </div>
 
                   <CustomButton
-                    className="btn-primary w-full font-button border-none mt-5"
+                    className="btn-primary w-full font-button border-none mt-4"
                     iconLeft={
                       <img
                         className="px-5 h-[25px]"
@@ -123,7 +142,7 @@ function Login() {
                   >
                     Sign in with Google
                   </CustomButton>
-                  <div className="text-center">
+                  <div className="text-center pt-4">
                     Already have an account?{" "}
                     <Link to="/login">
                       <span className="text-topaz font-bold underline">

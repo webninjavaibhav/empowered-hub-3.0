@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { initialSignUpState, quotes, signUpValidation, UserSignUpProps } from "../constants";
-import { END_POINTS } from "../../../../services/endpoints";
 import { useFormik } from "formik";
 
 
@@ -34,13 +33,13 @@ const useSignUp = () => {
         setIsLoading(true);
         setError(null);
         try {
-            const response = await fetch(`${END_POINTS.OKTA_BASE_URL}api/v1/users`, {
+            const response = await fetch(`${import.meta.env.VITE_OKTA_BASE_URL}api/v1/users`, {
                 method: "POST",
                 body: JSON.stringify(f1),
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
-                    Authorization: `SSWS ${END_POINTS.OKTA_AUTH_TOKEN}`,
+                    Authorization: `SSWS ${import.meta.env.VITE_OKTA_AUTH_TOKEN}`,
                 },
             });
             const data = await response.json();

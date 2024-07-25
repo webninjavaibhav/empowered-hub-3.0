@@ -36,8 +36,6 @@ export const signUpValidation = Yup.object({
     email: Yup.string()
         .email('Invalid email address')
         .required('Email is required'),
-    User_City: Yup.string().required(),
-    User_State: Yup.string().required(),
 });
 
 

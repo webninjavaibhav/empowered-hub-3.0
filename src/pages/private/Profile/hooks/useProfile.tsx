@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { END_POINTS } from "../../../../services/endpoints";
 import { initialUserProfile, profileValidation } from "../constants";
 import { useFormik } from "formik";
 
@@ -17,12 +16,12 @@ const useProfile = () => {
       };
       try {
         const response = await fetch(
-          `${END_POINTS.OKTA_BASE_URL}api/v1/users/${userId}`,
+          `${import.meta.env.VITE_OKTA_BASE_URL}api/v1/users/${userId}`,
           {
             method: "POST",
             body: JSON.stringify(formate),
             headers: {
-              Authorization: `SSWS ${END_POINTS.OKTA_AUTH_TOKEN}`,
+              Authorization: `SSWS ${import.meta.env.VITE_OKTA_AUTH_TOKEN}`,
             },
           }
         );
@@ -39,11 +38,11 @@ const useProfile = () => {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `${END_POINTS.OKTA_BASE_URL}api/v1/users/${userId}`,
+        `${import.meta.env.VITE_OKTA_BASE_URL}api/v1/users/${userId}`,
         {
           method: "GET",
           headers: {
-            Authorization: `SSWS ${END_POINTS.OKTA_AUTH_TOKEN}`,
+            Authorization: `SSWS ${import.meta.env.VITE_OKTA_AUTH_TOKEN}`,
           },
         }
       );
