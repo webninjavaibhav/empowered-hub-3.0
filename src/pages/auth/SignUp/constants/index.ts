@@ -1,5 +1,4 @@
 import * as Yup from "yup";
-import Images from "../../../../assets";
 
 export type UserSignUpProps = {
     firstName: string;
@@ -37,8 +36,6 @@ export const signUpValidation = Yup.object({
         .email('Invalid email address')
         .required('Email is required'),
 });
-
-
 
 
 export const quotes = [
