@@ -29,7 +29,7 @@ const useProfile = () => {
             },
           }
         );
-        const data = await response.json();
+        await response.json();
         alert("Update user successfully");
       } catch (error) {
         alert("Something went wrong !");

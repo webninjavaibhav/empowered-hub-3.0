@@ -8,12 +8,9 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 // for the authontication
 import Okta from "./helpers/Okta";
 import { LoginCallback, Security } from "@okta/okta-react";
-import { useState } from "react";
-import Auth from "./helpers/Auth";
 
 function App() {
   const oktaAuth = new OktaAuth(Okta.oidc);
-  const [authRequiredModalOpen, setAuthRequiredModalOpen] = useState(false);
 
   const navigation = useNavigate();
 
@@ -32,7 +29,7 @@ function App() {
       await triggerLogin();
     } else {
       // Ask the user to trigger the login process during token autoRenew process
-      setAuthRequiredModalOpen(true);
+      alert("Something went wrong !");
     }
   };
 

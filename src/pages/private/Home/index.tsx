@@ -8,7 +8,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
 
 const Home: React.FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const navigation = useNavigate();
 
   const info: any = localStorage.getItem("okta-token-storage");
