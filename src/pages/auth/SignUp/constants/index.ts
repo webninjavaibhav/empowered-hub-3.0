@@ -11,6 +11,7 @@ export type UserSignUpProps = {
     User_Role?: string;
     User_County?: string;
     User_Country?: string;
+    division?: string;
 }
 
 export const initialSignUpState: UserSignUpProps = {
@@ -21,6 +22,7 @@ export const initialSignUpState: UserSignUpProps = {
     User_State: "",
     email: "",
     login: "",
+    division: "HUB3"
 }
 
 export const signUpValidation = Yup.object({

@@ -4,7 +4,9 @@ import { useFormik } from "formik";
 
 const useProfile = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const userId = localStorage.getItem("user_id");
+  const info = localStorage.getItem("okta-token-storage");
+  const user = info && JSON.parse(info);
+  const userId = user.accessToken?.claims?.uid;
 
   const formik = useFormik({
     initialValues: initialUserProfile,
@@ -16,7 +18,7 @@ const useProfile = () => {
       };
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_OKTA_BASE_URL}api/v1/users/${userId}`,
+          `${import.meta.env.VITE_OKTA_BASE_URL}/api/v1/users/${userId}`,
           {
             method: "POST",
             body: JSON.stringify(formate),
@@ -28,9 +30,9 @@ const useProfile = () => {
           }
         );
         const data = await response.json();
-        console.log("The data is", data);
+        alert("Update user successfully");
       } catch (error) {
-        console.log("Caught in error ", error);
+        alert("Something went wrong !");
       }
     },
     validationSchema: profileValidation,
@@ -40,10 +42,11 @@ const useProfile = () => {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `${import.meta.env.VITE_OKTA_BASE_URL}api/v1/users/${userId}`,
+        `${import.meta.env.VITE_OKTA_BASE_URL}/api/v1/users/${userId}`,
         {
           method: "GET",
           headers: {
+            credentials: "include",
             Authorization: `SSWS ${import.meta.env.VITE_OKTA_AUTH_TOKEN}`,
           },
         }
@@ -62,8 +65,8 @@ const useProfile = () => {
   };
 
   useEffect(() => {
-    getUserProfile();
-  }, []);
+    userId && getUserProfile();
+  }, [userId]);
 
   return {
     formik,

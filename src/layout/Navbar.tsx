@@ -1,9 +1,21 @@
 import { useState } from "react";
 import Images from "../assets";
 import { Link } from "react-router-dom";
+import { useOktaAuth } from "@okta/okta-react";
 
 function Navbar() {
+  const info: any = localStorage.getItem("okta-token-storage");
+  const users = JSON.parse(info);
+  const userInfo = (users && users?.idToken?.claims?.name) || "";
+  const email = (users && users?.idToken?.claims?.preferred_username) || "";
+
+  const { oktaAuth } = useOktaAuth();
   const [isHovered, setIsHovered] = useState(false);
+
+  const isCorsError = (err: any) =>
+    err.name === "AuthApiError" &&
+    !err.errorCode &&
+    err.xhr.message === "Failed to fetch";
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -13,11 +25,24 @@ function Navbar() {
     setIsHovered(false);
   };
 
+  const logout = async () => {
+    const basename = window.location.origin;
+    try {
+      await oktaAuth.signOut({ postLogoutRedirectUri: basename });
+    } catch (err) {
+      if (isCorsError(err)) {
+        alert(JSON.stringify(err));
+      } else {
+        throw err;
+      }
+    }
+  };
+
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between p-4 bg-sapphire text-white">
         <Link
-          to="/home"
+          to="/"
           className="self-center text-2xl font-semibold whitespace-nowrap"
         >
           HUB <span className="text-topaz">3.0</span>
@@ -28,7 +53,7 @@ function Navbar() {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <span className="font-button">John Doe</span>
+          <span className="font-button">{userInfo}</span>
           <img
             src={Images.john}
             alt="profile"
@@ -44,10 +69,15 @@ function Navbar() {
                   >
                     Profile
                   </Link>
-                  <div className="text-xs">admin@gmail.com</div>
+                  <div className="text-xs text-nowrap">{email}</div>
                 </div>
                 <div>
-                  <div className="text-body-text font-h5">Log - out</div>
+                  <div
+                    onClick={logout}
+                    className="text-body-text font-h5 cursor-pointer"
+                  >
+                    Log - out
+                  </div>
                 </div>
               </div>
             </div>
