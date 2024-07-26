@@ -20,8 +20,6 @@ const Home: React.FC = () => {
   useEffect(() => {
     if (authState?.isAuthenticated === false) {
       navigation("/signup");
-    } else if (authState?.isAuthenticated) {
-      navigation("/");
     }
   }, [authState]);
 

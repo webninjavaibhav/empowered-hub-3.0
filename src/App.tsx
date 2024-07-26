@@ -42,7 +42,7 @@ function App() {
       >
         <Routes>
           <Route
-            path="/"
+            path="/*"
             element={<Home />}
           />
           <Route
