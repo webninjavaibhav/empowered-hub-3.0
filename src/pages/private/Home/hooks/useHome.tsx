@@ -19,6 +19,7 @@ const useHome = () => {
   const users = JSON.parse(info);
   const userInfo = (users && users?.idToken?.claims?.name) || "";
 
+  console.log("okta-token-storage", authState);
   useEffect(() => {
     if (authState?.isAuthenticated === false) {
       navigation("/login");
