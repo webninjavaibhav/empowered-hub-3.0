@@ -26,7 +26,9 @@ function App() {
     _oktaAuth: OktaAuthHttpInterface,
     originalUri: any
   ) => {
-    navigation(toRelativeUrl(originalUri || "/", window.location.origin));
+    navigation(
+      toRelativeUrl(originalUri || "/", "https://empowered-hub-3-0.vercel.app")
+    );
   };
 
   const customAuthHandler = async () => {
