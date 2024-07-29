@@ -1,5 +1,6 @@
 const BASENAME = import.meta.env.BASE_URL || "";
-const REDIRECT_URI = `https://empowered-hub-3-0.vercel.app`;
+// const REDIRECT_URI = `http://localhost:8080/login/callback`;
+const REDIRECT_URI = `https://empowered-hub-3-0.vercel.app/login/callback`;
 
 export default {
   oidc: {
