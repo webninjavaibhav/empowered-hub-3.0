@@ -21,7 +21,7 @@ function Login() {
         .then(() => {
           navigate("/");
         })
-        .catch((err) => {
+        .catch(() => {
           toast.error("Something went wrong !");
         });
     }

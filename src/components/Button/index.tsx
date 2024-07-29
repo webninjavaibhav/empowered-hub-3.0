@@ -1,7 +1,6 @@
 import "./styles.css";
 import clsx from "clsx";
 import React from "react";
-import Loader from "../Loading/Loader";
 
 interface CustomButtonProps {
   children: React.ReactNode;
