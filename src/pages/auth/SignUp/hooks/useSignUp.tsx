@@ -7,19 +7,31 @@ import {
 } from "../constants";
 import { useFormik } from "formik";
 import Images from "../../../../assets";
+import { useRegisterUserMutation } from "../../../../services/oktaApi";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
+import { useOktaAuth } from "@okta/okta-react";
 
 const useSignUp = () => {
+  const navigate = useNavigate();
+  const { authState, oktaAuth } = useOktaAuth();
+
+  const [registerUser] = useRegisterUserMutation();
+
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
+
+  const login = async () => {
+    oktaAuth.signInWithRedirect({ originalUri: "/" });
+  };
 
   const images = [Images.user, Images.user2, Images.user3, Images.user4];
 
   const formik = useFormik({
     initialValues: initialSignUpState,
     onSubmit: async (values) => {
-      let res = await handleSignUp(values);
-      console.log("response", res);
+      await handleSignUp(values);
     },
     validationSchema: signUpValidation,
   });
@@ -34,27 +46,15 @@ const useSignUp = () => {
 
     setIsLoading(true);
     setError(null);
+
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_OKTA_BASE_URL}/api/v1/users`,
-        {
-          method: "POST",
-          body: JSON.stringify(f1),
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `SSWS ${import.meta.env.VITE_OKTA_AUTH_TOKEN}`,
-          },
-        }
-      );
-      const data = await response.json();
+      const data = await registerUser(f1).unwrap();
       if (data?.errorCauses) {
-        alert(data.errorCauses[0].errorSummary);
+        toast.error(data.errorCauses[0].errorSummary);
       }
-      alert("Please check your email for activation link");
-    } catch (error) {
-      console.log(error, "caught in error ");
-      setError(`Error : ${JSON.stringify(error)}`);
+      toast.success("Please check your email for activation link");
+    } catch (err) {
+      toast.error("Something went wrong !");
     } finally {
       setIsLoading(false);
     }
@@ -68,6 +68,19 @@ const useSignUp = () => {
     return () => clearInterval(interval);
   }, [quotes.length]);
 
+  useEffect(() => {
+    if (authState && authState?.isAuthenticated) {
+      oktaAuth
+        .getUser()
+        .then(() => {
+          navigate("/");
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [authState, oktaAuth]);
+
   return {
     formik,
     isLoading,
@@ -76,6 +89,8 @@ const useSignUp = () => {
     setCurrentQuoteIndex,
     quotes,
     images,
+    authState,
+    login,
   };
 };
 

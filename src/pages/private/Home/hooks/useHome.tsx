@@ -1,9 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { questions } from "../constants";
+import { useOktaAuth } from "@okta/okta-react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const useHome = () => {
-  const [step, setStep] = useState(0);
-  const [formModal, setFormModal] = useState(true);
+  const navigation = useNavigate();
+  const { authState } = useOktaAuth();
+  const [searchParams] = useSearchParams();
+
+  const profileBuilder = searchParams.get("profilebuilder");
+
+  const [step, setStep] = useState<number>(0);
+  const [formModal, setFormModal] = useState<boolean>(
+    profileBuilder ? true : false
+  );
+
+  const info: any = localStorage.getItem("okta-token-storage");
+  const users = JSON.parse(info);
+  const userInfo = (users && users?.idToken?.claims?.name) || "";
+
+  useEffect(() => {
+    if (authState?.isAuthenticated === false) {
+      navigation("/login");
+    }
+  }, [authState]);
 
   const handleNext = () => {
     if (step < questions.length - 1) {
@@ -25,6 +45,8 @@ const useHome = () => {
     setFormModal,
     handleNext,
     handlePrev,
+    userInfo,
+    profileBuilder,
   };
 };
 

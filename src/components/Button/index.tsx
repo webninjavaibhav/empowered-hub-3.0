@@ -36,7 +36,6 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       >
         {iconLeft && <span>{iconLeft}</span>}
         {children}
-        {isLoading && <Loader />}
         {iconRight && <span>{iconRight}</span>}
       </button>
     </>

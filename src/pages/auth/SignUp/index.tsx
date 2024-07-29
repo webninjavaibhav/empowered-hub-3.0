@@ -3,46 +3,25 @@ import Text from "../../../components/Text";
 import CustomButton from "../../../components/Button";
 import TextInput from "../../../components/TextField";
 
-import { useOktaAuth } from "@okta/okta-react";
 import { Form, FormikProvider } from "formik";
 import useSignUp from "./hooks/useSignUp";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import Loader from "../../../components/Loading/Loader";
 
 function Login() {
-  const { formik, isLoading, error, currentQuoteIndex, quotes, images } =
-    useSignUp();
-
-  const navigate = useNavigate();
-
-  const { authState, oktaAuth } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState(null);
-
-  useEffect(() => {
-    if (!authState || !authState.isAuthenticated) {
-      setUserInfo(null);
-    } else {
-      oktaAuth
-        .getUser()
-        .then((info: any) => {
-          setUserInfo(info);
-          navigate("/");
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  }, [authState, oktaAuth]); // Update if authState changes
-
-  const login = async () => {
-    oktaAuth.signInWithRedirect({ originalUri: "/" });
-  };
+  const {
+    formik,
+    isLoading,
+    error,
+    currentQuoteIndex,
+    quotes,
+    images,
+    authState,
+    login,
+  } = useSignUp();
 
   if (!authState) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
-
-  console.log("user info", userInfo);
 
   return (
     <div className="bg-gradient-to-br from-fluorite to-topaz">

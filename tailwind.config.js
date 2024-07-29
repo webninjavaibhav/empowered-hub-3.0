@@ -2,31 +2,32 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    screens: {
-      sm: "480px",
-      md: "768px",
-      lg: "976px",
-      xl: "1440px",
-    },
-    colors: {
-      // Primary colors
-      sapphire: "#001239",
-      fluorite: "#12d3cf",
-      topaz: "#0f93bc",
-
-      // Grayscale colors
-      white: "#ffffff",
-      ash: "#f0f2f2",
-      carbon: "#53585f",
-      cool: "#333333",
-      black: "#000000",
-
-      // Accent colors
-      peridot: "#ced642",
-      citrine: "#f6921e",
-      ruby: "#ed3340",
-    },
     extend: {
+      screens: {
+        sm: "480px",
+        md: "768px",
+        lg: "976px",
+        xl: "1440px",
+      },
+
+      colors: {
+        // Primary colors
+        sapphire: "#001239",
+        fluorite: "#12d3cf",
+        topaz: "#0f93bc",
+
+        // Grayscale colors
+        white: "#ffffff",
+        ash: "#f0f2f2",
+        carbon: "#53585f",
+        cool: "#333333",
+        black: "#000000",
+
+        // Accent colors
+        peridot: "#ced642",
+        citrine: "#f6921e",
+        ruby: "#ed3340",
+      },
       fontSize: {
         // Font sizes
         h1: "48px",

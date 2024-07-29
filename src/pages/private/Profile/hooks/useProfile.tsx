@@ -1,38 +1,43 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { initialUserProfile, profileValidation } from "../constants";
 import { useFormik } from "formik";
+import {
+  useGetUserInfoQuery,
+  useUpdateUserProfileMutation,
+} from "../../../../services/oktaApi";
+import toast from "react-hot-toast";
+
+interface userProfile {
+  [key: string]: any; // Adjust this as per the actual profile structure
+}
 
 const useProfile = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const info = localStorage.getItem("okta-token-storage");
   const user = info && JSON.parse(info);
   const userId = user.accessToken?.claims?.uid;
+
+  const { data: userData, isLoading } = useGetUserInfoQuery(userId, {
+    skip: !userId,
+  });
+
+  const [updateUser] = useUpdateUserProfileMutation();
 
   const formik = useFormik({
     initialValues: initialUserProfile,
     onSubmit: async (values) => {
       const formate = {
-        profile: {
-          ...values,
+        userId: userId,
+        data: {
+          profile: {
+            ...values,
+          },
         },
       };
       try {
-        const response = await fetch(
-          `${import.meta.env.VITE_OKTA_BASE_URL}/api/v1/users/${userId}`,
-          {
-            method: "POST",
-            body: JSON.stringify(formate),
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-              Authorization: `SSWS ${import.meta.env.VITE_OKTA_AUTH_TOKEN}`,
-            },
-          }
-        );
-        await response.json();
-        alert("Update user successfully");
+        await updateUser(formate).unwrap();
+        toast.success("Update user successfully");
       } catch (error) {
-        alert("Something went wrong !");
+        toast.error("Something went wrong !");
       }
     },
     validationSchema: profileValidation,
@@ -40,33 +45,20 @@ const useProfile = () => {
 
   const getUserProfile = async () => {
     try {
-      setIsLoading(true);
-      const response = await fetch(
-        `${import.meta.env.VITE_OKTA_BASE_URL}/api/v1/users/${userId}`,
-        {
-          method: "GET",
-          headers: {
-            credentials: "include",
-            Authorization: `SSWS ${import.meta.env.VITE_OKTA_AUTH_TOKEN}`,
-          },
-        }
-      );
-      const parsedVal = await response.json();
-
-      Object.keys(parsedVal.profile).map((key) => {
-        parsedVal.profile[key] =
-          parsedVal.profile[key] === null ? "" : parsedVal.profile[key];
-      });
-      formik.setValues(parsedVal.profile);
+      const user: userProfile = userData;
+      if (user) {
+        Object.keys(user?.profile).map((key) => {
+          formik.setFieldValue(key, user?.profile ? user.profile[key] : "");
+        });
+      }
     } catch (error) {
       console.log("Caught in error ", error);
     }
-    setIsLoading(false);
   };
 
   useEffect(() => {
-    userId && getUserProfile();
-  }, [userId]);
+    userData && getUserProfile();
+  }, [userData]);
 
   return {
     formik,

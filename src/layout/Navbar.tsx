@@ -2,6 +2,7 @@ import { useState } from "react";
 import Images from "../assets";
 import { Link } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
+import toast from "react-hot-toast";
 
 function Navbar() {
   const info: any = localStorage.getItem("okta-token-storage");
@@ -31,7 +32,7 @@ function Navbar() {
       await oktaAuth.signOut({ postLogoutRedirectUri: basename });
     } catch (err) {
       if (isCorsError(err)) {
-        alert(JSON.stringify(err));
+        toast.error(JSON.stringify(err));
       } else {
         throw err;
       }

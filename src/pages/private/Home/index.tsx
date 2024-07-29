@@ -1,30 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { questions } from "./constants";
 import Modal from "../../../components/Modal";
 import useHome from "./hooks/useHome";
 import BuilderForm from "./builderForm";
 import Navbar from "../../../layout/Navbar";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { useOktaAuth } from "@okta/okta-react";
 
 const Home: React.FC = () => {
-  const [searchParams] = useSearchParams();
-  const navigation = useNavigate();
-
-  const info: any = localStorage.getItem("okta-token-storage");
-  const users = JSON.parse(info);
-  const userInfo = (users && users?.idToken?.claims?.name) || "";
-
-  const { authState } = useOktaAuth();
-
-  useEffect(() => {
-    if (authState?.isAuthenticated === false) {
-      navigation("/signup");
-    }
-  }, [authState]);
-
-  const profileBuilder = searchParams.get("profilebuilder");
-  const { step, formModal, setFormModal, handleNext, handlePrev } = useHome();
+  const { step, formModal, setFormModal, handleNext, handlePrev, userInfo } =
+    useHome();
 
   const present = questions[step];
   return (
@@ -36,25 +19,23 @@ const Home: React.FC = () => {
           Welcome {userInfo}
         </div>
 
-        {profileBuilder ? (
-          <Modal
-            autoClose={false}
-            onClose={() => setFormModal(false)}
-            isOpen={formModal}
-          >
-            <div className="bg-white rounded-lg flex overflow-auto w-[320px] md:w-[720px] lg:[1080px]">
-              <BuilderForm
-                step={step}
-                maxStep={questions.length - 1}
-                question={present.question}
-                description={present.description}
-                options={present.options}
-                onNext={handleNext}
-                onPrev={handlePrev}
-              />
-            </div>
-          </Modal>
-        ) : null}
+        <Modal
+          autoClose={false}
+          onClose={() => setFormModal(false)}
+          isOpen={formModal}
+        >
+          <div className="bg-white rounded-lg flex overflow-auto w-[320px] md:w-[720px] lg:[1080px]">
+            <BuilderForm
+              step={step}
+              maxStep={questions.length - 1}
+              question={present.question}
+              description={present.description}
+              options={present.options}
+              onNext={handleNext}
+              onPrev={handlePrev}
+            />
+          </div>
+        </Modal>
       </div>
     </div>
   );
