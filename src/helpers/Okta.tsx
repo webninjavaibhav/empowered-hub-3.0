@@ -1,4 +1,4 @@
-const BASENAME = import.meta.env.VITE_OKTA_BASE_URL || "";
+const BASENAME = "";
 const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URL;
 
 export default {
