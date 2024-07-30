@@ -7,7 +7,7 @@ const useProfile = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const info = localStorage.getItem("okta-token-storage");
   const user = info && JSON.parse(info);
-  const userId = user.accessToken?.claims?.uid;
+  const userId = user?.accessToken?.claims?.uid;
 
   const formik = useFormik({
     initialValues: initialUserProfile,

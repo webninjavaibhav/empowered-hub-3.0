@@ -9,10 +9,9 @@ const useNavbar = () => {
     const { oktaAuth } = useOktaAuth();
     const [isHovered, setIsHovered] = useState(false);
 
-
-    const oktaInfo = localStorage.getItem("okta-token-storage") || '';
-    const users = oktaInfo && JSON.parse(oktaInfo);
-    const userId = (users && users?.accessToken?.claims?.uid) || "";
+    const info = localStorage.getItem("okta-token-storage");
+    const user = info && JSON.parse(info);
+    const userId = user?.accessToken?.claims?.uid;
 
     const getUserProfile = async () => {
         try {
@@ -28,9 +27,8 @@ const useNavbar = () => {
     };
 
     useEffect(() => {
-        userId &&
-            getUserProfile()
-    }, [])
+        userId && getUserProfile()
+    }, [userId])
 
     const isCorsError = (err: any) =>
         err.name === "AuthApiError" &&
