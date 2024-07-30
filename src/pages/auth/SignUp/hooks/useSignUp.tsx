@@ -43,22 +43,22 @@ const useSignUp = () => {
     setError(null);
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_OKTA_BASE_URL}api/v1/users`,
+        `${import.meta.env.VITE_BACKEND_BASEURL}user/register`,
         {
           method: "POST",
           body: JSON.stringify(f1),
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            Authorization: `SSWS ${import.meta.env.VITE_OKTA_AUTH_TOKEN}`,
           },
         }
       );
       const data = await response.json();
       if (data?.errorCauses) {
         toast.error(data.errorCauses[0].errorSummary);
+      } else {
+        toast.success("Please check your email for activation link");
       }
-      toast.success("Please check your email for activation link");
     } catch (error) {
       setError(`Error : ${JSON.stringify(error)}`);
     } finally {
