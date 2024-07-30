@@ -1,10 +1,17 @@
 import Images from "../../assets";
 import { Link } from "react-router-dom";
 import useNavbar from "./hooks/useNavbar";
+import Loader from "../../components/Loading/Loader";
 
 function Navbar() {
-  const { user, isHovered, handleMouseEnter, handleMouseLeave, logout } =
-    useNavbar();
+  const {
+    user,
+    isHovered,
+    handleMouseEnter,
+    handleMouseLeave,
+    logout,
+    isLoading,
+  } = useNavbar();
 
   return (
     <div>
@@ -18,11 +25,11 @@ function Navbar() {
 
         <div
           className="relative flex justify-between items-center gap-2"
-          onMouseEnter={handleMouseEnter}
+          onMouseEnter={() => !isLoading && handleMouseEnter()}
           onMouseLeave={handleMouseLeave}
         >
           <span className="font-button">
-            {`${user?.firstName}  ${user?.lastName}`}
+            {isLoading ? <Loader /> : `${user?.firstName}  ${user?.lastName}`}
           </span>
           <img
             src={Images.john}

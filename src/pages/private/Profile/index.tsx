@@ -9,10 +9,14 @@ function Profile() {
   const { isLoading, formik } = useProfile();
 
   if (isLoading) {
-    return <Loader />;
+    return (
+      <div className="flex justify-center h-[100vh] items-center ">
+        <Loader />
+      </div>
+    );
   }
   return (
-    <div className=" bg-white h-[100vh]">
+    <div className="bg-white h-[100vh]">
       <Navbar />
       <div className="px-2 flex justify-center min-h-[calc(100vh-72px)] items-center">
         <FormikProvider value={formik}>

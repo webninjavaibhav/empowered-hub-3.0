@@ -16,6 +16,7 @@ const useHome = () => {
   );
 
   const savedUser = localStorage.getItem("user");
+
   useEffect(() => {
     if (authState?.isAuthenticated === false) {
       navigation("/login");

@@ -27,7 +27,11 @@ function Login() {
     }
   }, [authState, oktaAuth]); // Update if authState changes
 
-  return <Loader />;
+  return (
+    <div className="flex justify-center h-[100vh] items-center ">
+      <Loader />
+    </div>
+  );
 }
 
 export default Login;

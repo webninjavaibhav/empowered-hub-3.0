@@ -4,6 +4,7 @@ import Modal from "../../../components/Modal";
 import useHome from "./hooks/useHome";
 import BuilderForm from "./builderForm";
 import Navbar from "../../../layout/Navbar";
+import Loader from "../../../components/Loading/Loader";
 
 const Home: React.FC = () => {
   const { step, formModal, setFormModal, handleNext, handlePrev, user } =
@@ -16,7 +17,7 @@ const Home: React.FC = () => {
 
       <div className="w-screen h-screen overflow-hidden">
         <div className=" text-center p-10 font-h1 text-h1">
-          Welcome {`${user?.firstName}  ${user?.lastName}`}
+          Hello ! {!user ? <Loader /> : `${user?.firstName}  ${user?.lastName}`}
         </div>
 
         <Modal

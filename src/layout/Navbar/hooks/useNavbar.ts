@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 const useNavbar = () => {
     const { oktaAuth } = useOktaAuth();
     const [isHovered, setIsHovered] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const info = localStorage.getItem("okta-token-storage");
     const user = info && JSON.parse(info);
@@ -20,7 +21,7 @@ const useNavbar = () => {
             );
             const parsedVal = await response.json();
             localStorage.setItem("user", JSON.stringify(parsedVal.profile));
-
+            setIsLoading(false)
         } catch (error) {
             toast.error("Something went wrong !");
         }
@@ -60,11 +61,11 @@ const useNavbar = () => {
 
 
     return {
-
         user: savedUser && JSON.parse(savedUser),
         isHovered,
         handleMouseEnter,
         handleMouseLeave,
+        isLoading,
         logout
     }
 }
