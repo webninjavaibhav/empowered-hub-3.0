@@ -11,7 +11,7 @@ const useNavbar = () => {
 
 
     const oktaInfo = localStorage.getItem("okta-token-storage") || '';
-    const users = JSON.parse(oktaInfo);
+    const users = oktaInfo && JSON.parse(oktaInfo);
     const userId = (users && users?.accessToken?.claims?.uid) || "";
 
     const getUserProfile = async () => {
