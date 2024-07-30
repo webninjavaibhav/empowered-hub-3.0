@@ -15,8 +15,6 @@ const useHome = () => {
     profileBuilder ? true : false
   );
 
-  const savedUser = localStorage.getItem("user");
-
   useEffect(() => {
     if (authState?.isAuthenticated === false) {
       navigation("/login");
@@ -43,7 +41,6 @@ const useHome = () => {
     setFormModal,
     handleNext,
     handlePrev,
-    user: savedUser && JSON.parse(savedUser),
     profileBuilder,
   };
 };

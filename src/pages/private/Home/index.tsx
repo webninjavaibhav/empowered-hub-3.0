@@ -4,11 +4,9 @@ import Modal from "../../../components/Modal";
 import useHome from "./hooks/useHome";
 import BuilderForm from "./builderForm";
 import Navbar from "../../../layout/Navbar";
-import Loader from "../../../components/Loading/Loader";
 
 const Home: React.FC = () => {
-  const { step, formModal, setFormModal, handleNext, handlePrev, user } =
-    useHome();
+  const { step, formModal, setFormModal, handleNext, handlePrev } = useHome();
 
   const present = questions[step];
   return (
@@ -16,8 +14,8 @@ const Home: React.FC = () => {
       <Navbar />
 
       <div className="w-screen h-screen overflow-hidden">
-        <div className=" text-center p-10 font-h1 text-h1">
-          Hello ! {!user ? <Loader /> : `${user?.firstName}  ${user?.lastName}`}
+        <div className="text-center p-10 font-h1 text-h3">
+          Hub 2.0 Dashboard
         </div>
 
         <Modal
