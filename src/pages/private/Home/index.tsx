@@ -6,7 +6,7 @@ import BuilderForm from "./builderForm";
 import Navbar from "../../../layout/Navbar";
 
 const Home: React.FC = () => {
-  const { step, formModal, setFormModal, handleNext, handlePrev, userInfo } =
+  const { step, formModal, setFormModal, handleNext, handlePrev, user } =
     useHome();
 
   const present = questions[step];
@@ -16,7 +16,7 @@ const Home: React.FC = () => {
 
       <div className="w-screen h-screen overflow-hidden">
         <div className=" text-center p-10 font-h1 text-h1">
-          Welcome {userInfo}
+          Welcome {`${user?.firstName}  ${user?.lastName}`}
         </div>
 
         <Modal

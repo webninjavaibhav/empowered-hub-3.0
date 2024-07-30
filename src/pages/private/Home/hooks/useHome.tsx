@@ -15,11 +15,7 @@ const useHome = () => {
     profileBuilder ? true : false
   );
 
-  const info: any = localStorage.getItem("okta-token-storage");
-  const users = JSON.parse(info);
-  const userInfo = (users && users?.idToken?.claims?.name) || "";
-
-  console.log("okta-token-storage", authState);
+  const savedUser = localStorage.getItem("user");
   useEffect(() => {
     if (authState?.isAuthenticated === false) {
       navigation("/login");
@@ -46,7 +42,7 @@ const useHome = () => {
     setFormModal,
     handleNext,
     handlePrev,
-    userInfo,
+    user: savedUser && JSON.parse(savedUser),
     profileBuilder,
   };
 };

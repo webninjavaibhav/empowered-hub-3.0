@@ -56,7 +56,7 @@ const useProfile = () => {
       });
       formik.setValues(parsedVal.profile);
     } catch (error) {
-      console.log("Caught in error ", error);
+      toast.error("Something went wrong !");
     }
     setIsLoading(false);
   };

@@ -26,8 +26,7 @@ const useSignUp = () => {
   const formik = useFormik({
     initialValues: initialSignUpState,
     onSubmit: async (values) => {
-      let res = await handleSignUp(values);
-      console.log("response", res);
+      await handleSignUp(values);
     },
     validationSchema: signUpValidation,
   });
