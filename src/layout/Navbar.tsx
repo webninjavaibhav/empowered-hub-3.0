@@ -5,6 +5,12 @@ import { useOktaAuth } from "@okta/okta-react";
 import toast from "react-hot-toast";
 
 function Navbar() {
+  const profileData = localStorage.getItem("user") || "";
+  const data = JSON.parse(profileData);
+  const profileEmail = data?.email;
+  const firstName = data?.firstName;
+  const lastName = data?.lastName;
+
   const info: any = localStorage.getItem("okta-token-storage");
   const users = JSON.parse(info);
   const userInfo = (users && users?.idToken?.claims?.name) || "";
@@ -54,7 +60,9 @@ function Navbar() {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <span className="font-button">{userInfo}</span>
+          <span className="font-button">
+            {firstName + " " + lastName || userInfo}
+          </span>
           <img
             src={Images.john}
             alt="profile"
@@ -70,7 +78,9 @@ function Navbar() {
                   >
                     Profile
                   </Link>
-                  <div className="text-xs text-nowrap">{email}</div>
+                  <div className="text-xs text-nowrap">
+                    {profileEmail || email}
+                  </div>
                 </div>
                 <div>
                   <div

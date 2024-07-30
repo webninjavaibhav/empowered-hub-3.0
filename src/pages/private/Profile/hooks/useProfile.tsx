@@ -28,7 +28,12 @@ const useProfile = () => {
             body: JSON.stringify(formate),
           }
         );
-        await response.json();
+        const data = await response.json();
+
+        if (data) {
+          localStorage.setItem("user", JSON.stringify(data.profile));
+        }
+
         toast.success("Update user successfully");
       } catch (error) {
         toast.error("Something went wrong !");
