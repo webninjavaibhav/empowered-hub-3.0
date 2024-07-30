@@ -22,6 +22,9 @@ const useProfile = () => {
           `${import.meta.env.VITE_BACKEND_BASEURL}user/${userId}`,
           {
             method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
             body: JSON.stringify(formate),
           }
         );
