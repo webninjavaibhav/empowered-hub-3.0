@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { initialUserProfile, profileValidation } from "../constants";
 import { useFormik } from "formik";
+import toast from "react-hot-toast";
 
 const useProfile = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -18,21 +19,16 @@ const useProfile = () => {
       };
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_OKTA_BASE_URL}api/v1/users/${userId}`,
+          `${import.meta.env.VITE_BACKEND_BASEURL}user/${userId}`,
           {
             method: "POST",
             body: JSON.stringify(formate),
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-              Authorization: `SSWS ${import.meta.env.VITE_OKTA_AUTH_TOKEN}`,
-            },
           }
         );
         await response.json();
-        alert("Update user successfully");
+        toast.success("Update user successfully");
       } catch (error) {
-        alert("Something went wrong !");
+        toast.error("Something went wrong !");
       }
     },
     validationSchema: profileValidation,
@@ -42,14 +38,7 @@ const useProfile = () => {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `${import.meta.env.VITE_OKTA_BASE_URL}api/v1/users/${userId}`,
-        {
-          method: "GET",
-          headers: {
-            credentials: "include",
-            Authorization: `SSWS ${import.meta.env.VITE_OKTA_AUTH_TOKEN}`,
-          },
-        }
+        `${import.meta.env.VITE_BACKEND_BASEURL}user/${userId}`
       );
       const parsedVal = await response.json();
 
