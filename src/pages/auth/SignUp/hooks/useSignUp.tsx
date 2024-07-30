@@ -44,7 +44,7 @@ const useSignUp = () => {
     setError(null);
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_OKTA_BASE_URL}/api/v1/users`,
+        `${import.meta.env.VITE_OKTA_BASE_URL}api/v1/users`,
         {
           method: "POST",
           body: JSON.stringify(f1),
