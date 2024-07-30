@@ -18,7 +18,7 @@ const useProfile = () => {
       };
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_OKTA_BASE_URL}/api/v1/users/${userId}`,
+          `${import.meta.env.VITE_OKTA_BASE_URL}api/v1/users/${userId}`,
           {
             method: "POST",
             body: JSON.stringify(formate),
@@ -42,7 +42,7 @@ const useProfile = () => {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `${import.meta.env.VITE_OKTA_BASE_URL}/api/v1/users/${userId}`,
+        `${import.meta.env.VITE_OKTA_BASE_URL}api/v1/users/${userId}`,
         {
           method: "GET",
           headers: {
