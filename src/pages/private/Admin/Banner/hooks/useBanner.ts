@@ -16,16 +16,14 @@ const useBanner = () => {
     const closeModal = () => setIsOpen(false);
     const openModal = () => setIsOpen(true);
 
-    const [modalData, setModalData] = useState<BannerProp>({
-        id: '',
-        title: '',
-        description: '',
-        link: '',
-    })
-
 
     const formik = useFormik({
-        initialValues: modalData,
+        initialValues: {
+            id: '',
+            title: '',
+            description: '',
+            link: '',
+        },
         onSubmit: async (values) => {
             try {
                 setIsLoading(true)
@@ -83,8 +81,6 @@ const useBanner = () => {
         isOpen,
         isLoading,
         setIsOpen,
-        modalData,
-        setModalData,
         closeModal,
         openModal
     }

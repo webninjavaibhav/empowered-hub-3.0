@@ -6,17 +6,8 @@ import TextInput from "../../../../components/TextField";
 import Images from "../../../../assets";
 
 function Banner() {
-  const {
-    banners,
-    formik,
-    isOpen,
-    setIsOpen,
-    modalData,
-    isLoading,
-    setModalData,
-    closeModal,
-    openModal,
-  } = useBanner();
+  const { banners, formik, isOpen, isLoading, closeModal, openModal } =
+    useBanner();
 
   return (
     <div>
@@ -34,7 +25,6 @@ function Banner() {
                   <img
                     onClick={() => {
                       formik.setValues(e);
-                      setModalData(e);
                       openModal();
                     }}
                     className="w-[20px] absolute right-[10px] cursor-pointer"
