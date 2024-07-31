@@ -15,7 +15,7 @@ const Home: React.FC = () => {
 
       <div className="w-screen h-screen overflow-hidden">
         <div className="text-center p-10 font-h1 text-h3">
-          Hub 2.0 Dashboard
+          Hub 3.0 Dashboard
         </div>
 
         <Modal
