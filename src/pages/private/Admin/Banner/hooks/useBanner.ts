@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
+import * as Yup from "yup";
 import toast from "react-hot-toast";
 
 type BannerProp = {
@@ -30,10 +31,17 @@ const useBanner = () => {
                 await updateBanner(values);
                 await getBanner();
             } catch (error) {
+                toast.error("Something went wrong !");
+            } finally {
+                toast.success("Update banner successfully");
                 setIsLoading(false)
             }
         },
-        validationSchema: '',
+        validationSchema: Yup.object({
+            title: Yup.string().required("Title is required"),
+            description: Yup.string().required("Description is required"),
+            link: Yup.string().required("Link is required"),
+        }),
     });
 
 
@@ -43,7 +51,6 @@ const useBanner = () => {
                 `${import.meta.env.VITE_BACKEND_BASEURL}banner`
             );
             const parsedVal = await response.json();
-            console.log(parsedVal, "Asdfasdf");
             setBanners(parsedVal);
         } catch (error) {
             toast.error("Something went wrong !");
