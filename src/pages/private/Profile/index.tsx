@@ -3,7 +3,6 @@ import Loader from "../../../components/Loading/Loader";
 import CustomButton from "../../../components/Button";
 import TextInput from "../../../components/TextField";
 import useProfile from "./hooks/useProfile";
-import Navbar from "../../../layout/Navbar";
 
 function Profile() {
   const { isLoading, formik } = useProfile();
@@ -17,7 +16,6 @@ function Profile() {
   }
   return (
     <div className="bg-white h-[100vh]">
-      <Navbar />
       <div className="px-2 flex justify-center min-h-[calc(100vh-72px)] items-center">
         <FormikProvider value={formik}>
           <Form>

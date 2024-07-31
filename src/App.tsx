@@ -1,6 +1,7 @@
 import SignUp from "./pages/auth/SignUp";
 import Home from "./pages/private/Home";
 import Profile from "./pages/private/Profile";
+import Layout from "./layout/index";
 
 import OktaAuth, {
   OktaAuthHttpInterface,
@@ -13,6 +14,7 @@ import Okta from "./helpers/Okta";
 import { LoginCallback, Security } from "@okta/okta-react";
 import Login from "./pages/auth/LogIn";
 import toast, { Toaster } from "react-hot-toast";
+import Admin from "./pages/private/Admin";
 
 function App() {
   const oktaAuth = new OktaAuth(Okta.oidc);
@@ -52,19 +54,28 @@ function App() {
           reverseOrder={false}
         />
         <Routes>
+          <Route element={<Layout />}>
+            <Route
+              path="/*"
+              element={<Home />}
+            />
+
+            <Route
+              path="/profile"
+              element={<Profile />}
+            />
+          </Route>
+
           <Route
-            path="/*"
-            element={<Home />}
+            path="/admin"
+            element={<Admin />}
           />
+
           <Route
             path="/login/callback"
             element={<LoginCallback />}
           />
 
-          <Route
-            path="/profile"
-            element={<Profile />}
-          />
           <Route
             path="/signup"
             element={<SignUp />}

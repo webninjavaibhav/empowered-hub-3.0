@@ -23,14 +23,15 @@ export const oktaApi = createApi({
     tagTypes: ['userInfo'],
 
     endpoints: (builder) => ({
+
         getUserInfo: builder.query({
-            query: (id) => `/api/v1/users/${id}`,
+            query: (id) => `/users/${id}`,
             providesTags: ['userInfo']
         }),
 
         registerUser: builder.mutation({
             query: (user) => ({
-                url: '/api/v1/users',
+                url: '/users',
                 method: 'POST',
                 body: JSON.stringify(user),
             }),
@@ -39,7 +40,7 @@ export const oktaApi = createApi({
 
         updateUserProfile: builder.mutation({
             query: (user) => ({
-                url: `/api/v1/users/${user.userId}`,
+                url: `/users/${user.userId}`,
                 method: 'POST',
                 body: JSON.stringify(user.data),
             }),

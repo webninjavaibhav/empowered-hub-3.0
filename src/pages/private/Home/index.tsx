@@ -3,16 +3,13 @@ import { questions } from "./constants";
 import Modal from "../../../components/Modal";
 import useHome from "./hooks/useHome";
 import BuilderForm from "./builderForm";
-import Navbar from "../../../layout/Navbar";
 
 const Home: React.FC = () => {
   const { step, formModal, setFormModal, handleNext, handlePrev } = useHome();
 
   const present = questions[step];
   return (
-    <div className=" bg-white h-[100vh]">
-      <Navbar />
-
+    <div className="bg-white h-[100vh]">
       <div className="w-screen h-screen overflow-hidden">
         <div className="text-center p-10 font-h1 text-h3">
           Hub 3.0 Dashboard

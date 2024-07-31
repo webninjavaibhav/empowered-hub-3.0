@@ -17,9 +17,11 @@ import user from './images/user.png'
 import user2 from './images/user1.png'
 import user3 from './images/user2.png'
 import user4 from './images/user3.png'
+import cross from './images/cross.svg'
 
 
 import john from './images/jon.svg'
+import editIcon from './images/editIcon.png'
 
 const Images = {
     logo,
@@ -42,6 +44,8 @@ const Images = {
     user2,
     user3,
     user4,
+    cross,
+    editIcon,
 }
 
 export default Images;
