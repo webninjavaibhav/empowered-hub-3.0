@@ -62,7 +62,7 @@ const Sidebar = () => {
           </span>
         </div>
         <div className="flex flex-col gap-3 py-2">
-          <div className="flex flex-col gap-[4px]">
+          <div className="flex flex-col gap-2">
             {mainRoute?.map((nav) => {
               let isActive = path === nav?.route ? true : false;
               return (
@@ -71,14 +71,17 @@ const Sidebar = () => {
                     className="cursor-pointer p-0"
                     onClick={() => handleNavigation(nav?.route)}
                   >
-                    <div className="flex items-center overflow-hidden">
-                      <div className="flex items-center justify-center min-w-[90px] h-[52px]">
+                    <div
+                      className={clsx(
+                        "flex items-center overflow-hidden mx-4 ",
+                        isActive && "bg-topaz rounded-lg"
+                      )}
+                    >
+                      <div className="flex items-center justify-center min-w-[60px] h-[52px]">
                         <div
-                          className={`flex items-center justify-center w-[50px] h-[50px] ${
-                            isActive
-                              ? "bg-fluorite rounded-lg"
-                              : "bg-transparent"
-                          }`}
+                          className={
+                            "flex items-center justify-center w-[50px] h-[50px]"
+                          }
                         >
                           <img
                             src={nav.icon}
@@ -87,9 +90,7 @@ const Sidebar = () => {
                         </div>
                       </div>
                       <div
-                        className={` ${
-                          isActive ? "text-fluorite " : " "
-                        }   whitespace-nowrap group-hover:block truncate pr-4 transition-all duration-[700ms] ease-in-out`}
+                        className={`whitespace-nowrap group-hover:block truncate pr-4 transition-all duration-[700ms] ease-in-out`}
                       >
                         {nav?.name}
                       </div>
@@ -100,7 +101,7 @@ const Sidebar = () => {
             })}
           </div>
           <div>
-            <div className="flex w-[80%] m-auto border-b-2 border-carbon"></div>
+            <div className="flex w-[75%] m-auto border-b-2 border-carbon"></div>
           </div>
           <div className="flex flex-col gap-2">
             {secondryRoute?.map((nav) => {
@@ -108,14 +109,15 @@ const Sidebar = () => {
               return (
                 <div key={nav?.name}>
                   <div className="cursor-pointer p-0">
-                    <div className="flex items-center overflow-hidden">
-                      <div className="flex items-center justify-center min-w-[90px] h-[52px]">
+                    <div
+                      className={clsx(
+                        "flex items-center overflow-hidden mx-4 ",
+                        isActive && "bg-topaz rounded-lg"
+                      )}
+                    >
+                      <div className="flex items-center justify-center min-w-[60px] h-[52px]">
                         <div
-                          className={`flex items-center justify-center w-[50px] h-[50px]${
-                            isActive
-                              ? " bg-fluorite rounded-lg"
-                              : "bg-transparent"
-                          }`}
+                          className={`flex items-center justify-center w-[50px] h-[50px]`}
                         >
                           <img
                             src={nav.icon}
@@ -124,9 +126,7 @@ const Sidebar = () => {
                         </div>
                       </div>
                       <div
-                        className={` ${
-                          isActive ? "text-white" : ""
-                        } whitespace-nowrap overflow-hidden group-hover:block transition-all truncate pr-4 duration-[700ms] ease-in-out`}
+                        className={`whitespace-nowrap overflow-hidden group-hover:block transition-all truncate pr-4 duration-[700ms] ease-in-out`}
                       >
                         {nav?.name}
                       </div>
