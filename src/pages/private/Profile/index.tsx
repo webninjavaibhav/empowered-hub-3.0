@@ -126,6 +126,7 @@ function Profile() {
                     type="text"
                     name="mobilePhone"
                     label="Phone"
+                    className="border-none"
                   />
                   <TextInput
                     id="User_ZipCode"
