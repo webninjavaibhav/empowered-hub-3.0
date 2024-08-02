@@ -34,7 +34,7 @@ function Login() {
             alt="profile"
           />
           {quotes[currentQuoteIndex]}
-          <div className="text-black font-h4 text-body-text">
+          <div className="text-sapphire font-h4 text-body-text">
             MEGAN K, AMES HS, IA
           </div>
         </Text>
@@ -46,7 +46,7 @@ function Login() {
                 <Text className="font-light text-sm text-slate-400 my-2">
                   Kindly fill in your details below to create an account
                 </Text>
-                <div className="">
+                <div className="flex flex-col gap-5">
                   <div className="flex justify-around gap-4">
                     <TextInput
                       id="firstName"
@@ -69,14 +69,12 @@ function Login() {
                     name="email"
                     label="Email"
                     type="text"
-                    className="my-4"
                   />
 
                   <TextInput
                     id="User_State"
                     name="User_State"
                     label="State"
-                    className="my-4"
                     type="text"
                   />
                   <div className="flex justify-around gap-4">
@@ -103,7 +101,7 @@ function Login() {
                         type="checkbox"
                       />
                     </div>
-                    <Text className="font-light text-sm text-slate-600 my-2">
+                    <Text className="font-light text-sm text-slate-600">
                       You agree to the{" "}
                       <a
                         target="_blank"
@@ -139,7 +137,7 @@ function Login() {
                     type="submit"
                     isLoading={isLoading}
                     disabled={false}
-                    className="btn-secondary border-none font-button mt-4 mb-2 w-full"
+                    className="btn-secondary border-none font-button w-full"
                   >
                     Sign Up
                   </CustomButton>
@@ -151,7 +149,7 @@ function Login() {
                   </div>
 
                   <CustomButton
-                    className="btn-primary w-full font-button border-none mt-4"
+                    className="btn-primary w-full font-button border-none"
                     iconLeft={
                       <img
                         className="px-5 h-[25px]"
@@ -162,7 +160,7 @@ function Login() {
                   >
                     Sign in with Google
                   </CustomButton>
-                  <div className="text-center pt-4">
+                  <div className="text-center">
                     Already have an account?{" "}
                     <span
                       onClick={login}

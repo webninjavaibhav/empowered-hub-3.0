@@ -3,7 +3,7 @@
 }
 
 /* customized the input field element property */
-.field .input {
+.input {
   height: 64px;
   font-size: 16px;
   border-radius: 8px;

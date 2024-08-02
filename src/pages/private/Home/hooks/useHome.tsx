@@ -1,47 +1,29 @@
-import { useEffect, useState } from "react";
-import { questions } from "../constants";
-import { useOktaAuth } from "@okta/okta-react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useState } from "react";
+import useAuth from "../../../../helpers/useAuth";
 
+//comment for now
 const useHome = () => {
-  const navigation = useNavigate();
-  const { authState } = useOktaAuth();
-  const [searchParams] = useSearchParams();
+  const {
+    userRole,
+    // isNewUser,
+    handleSetUser,
+  } = useAuth();
 
-  const profileBuilder = searchParams.get("profilebuilder");
-
-  const [step, setStep] = useState<number>(0);
   const [formModal, setFormModal] = useState<boolean>(
-    profileBuilder ? true : false
+    false
+    // isNewUser != "false" ? true : false
   );
 
-  useEffect(() => {
-    if (authState?.isAuthenticated === false) {
-      navigation("/login");
-    }
-  }, [authState]);
-
-  const handleNext = () => {
-    if (step < questions.length - 1) {
-      setStep(step + 1);
-    } else {
-      setFormModal(false);
-    }
-  };
-
-  const handlePrev = () => {
-    if (step > 0) {
-      setStep(step - 1);
-    }
+  const handleClose = () => {
+    setFormModal(false);
+    localStorage.setItem("isNewUser", "false");
   };
 
   return {
-    step,
+    userRole,
     formModal,
-    setFormModal,
-    handleNext,
-    handlePrev,
-    profileBuilder,
+    handleClose,
+    handleSetUser,
   };
 };
 

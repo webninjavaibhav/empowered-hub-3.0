@@ -37,6 +37,7 @@ const useNavbar = () => {
         err.xhr.message === "Failed to fetch";
 
     const logout = async () => {
+        localStorage.clear();
         const basename = window.location.origin;
         try {
             await oktaAuth.signOut({ postLogoutRedirectUri: basename });

@@ -1,38 +1,32 @@
 import React from "react";
-import { questions } from "./constants";
 import Modal from "../../../components/Modal";
+
 import useHome from "./hooks/useHome";
-import BuilderForm from "./builderForm";
+
+import Role from "../builderForm/Role";
+import BuilderForm from "../builderForm";
 
 const Home: React.FC = () => {
-  const { step, formModal, setFormModal, handleNext, handlePrev } = useHome();
+  const { formModal, handleClose, userRole, handleSetUser } = useHome();
 
-  const present = questions[step];
   return (
-    <div className="bg-white h-[100vh]">
-      <div className="w-screen h-screen overflow-hidden">
-        <div className="text-center p-10 font-h1 text-h3">
-          Hub 3.0 Dashboard
-        </div>
+    <div className="">
+      <div className="text-center font-h1 text-h3 p-10">Welcome to HUB 3.0</div>
 
-        <Modal
-          autoClose={false}
-          onClose={() => setFormModal(false)}
-          isOpen={formModal}
-        >
-          <div className="bg-white rounded-lg flex overflow-auto w-[320px] md:w-[720px] lg:[1080px]">
-            <BuilderForm
-              step={step}
-              maxStep={questions.length - 1}
-              question={present.question}
-              description={present.description}
-              options={present.options}
-              onNext={handleNext}
-              onPrev={handlePrev}
-            />
-          </div>
-        </Modal>
-      </div>
+      <Modal
+        autoClose={false}
+        onClose={handleClose}
+        isOpen={formModal}
+        className="w-full md:w-4/5 xl:w-2/3"
+      >
+        <div>
+          {userRole ? (
+            <BuilderForm handleClose={handleClose} />
+          ) : (
+            <Role handleRole={handleSetUser} />
+          )}
+        </div>
+      </Modal>
     </div>
   );
 };

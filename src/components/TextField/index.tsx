@@ -40,8 +40,9 @@ const TextInput: React.FC<TextInputProps> = ({
         placeholder={`Enter ${label}`}
         onFocus={handleFocus}
         className={clsx(
-          "w-full input",
-          showFeedback ? (meta.error ? "invalid" : "valid") : ""
+          showFeedback ? (meta.error ? "invalid " : "valid ") : "",
+          " w-full input ",
+          className
         )}
       />
       {rightIcon && (

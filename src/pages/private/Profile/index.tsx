@@ -1,128 +1,252 @@
+import { useState } from "react";
 import { Form, FormikProvider } from "formik";
-import Loader from "../../../components/Loading/Loader";
+
+import Images from "../../../assets";
+import Tabs from "../../../components/Tabs";
+import useProfile from "./hooks/useProfile";
 import CustomButton from "../../../components/Button";
 import TextInput from "../../../components/TextField";
-import useProfile from "./hooks/useProfile";
+import Loader from "../../../components/Loading/Loader";
+import {
+  profileTabs,
+  grade,
+  subjectTaught,
+  schoolSettings,
+  roles,
+} from "./constants";
+import Modal from "../../../components/Modal";
+import TabModel from "./Model";
 
 function Profile() {
-  const { isLoading, formik } = useProfile();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [modalData, setModalData] = useState<any>({});
+
+  const { isLoading, formik, isUpating } = useProfile();
+  const [activeTab, setActiveTab] = useState(profileTabs[0].value);
+
+  const isProfile = activeTab === "myProfile" ? true : false;
+  const closeModal = () => setIsOpen(false);
+
+  const openModal = (data: any) => {
+    setModalData(data);
+    setIsOpen(true);
+  };
 
   if (isLoading) {
     return (
-      <div className="flex justify-center h-[100vh] items-center ">
+      <div className="flex justify-center h-[calc(100vh-120px)] items-center ">
         <Loader />
       </div>
     );
   }
+
   return (
-    <div className="bg-white h-[100vh]">
-      <div className="px-2 flex justify-center min-h-[calc(100vh-72px)] items-center">
+    <div>
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] p-4 items-center">
+        <div className="text-h3 font-h3">
+          {isProfile ? "My Profile" : "My Classroom"}
+        </div>
+        <div>
+          <Tabs
+            tabs={profileTabs}
+            activeTab={activeTab}
+            onChange={(tab: string) => setActiveTab(tab)}
+          />
+        </div>
+      </div>
+
+      {isProfile && (
         <FormikProvider value={formik}>
           <Form>
-            <div className="bg-white flex flex-col gap-4 rounded-2xl p-8 border border-sapphire">
-              <div className="text-h5 font-h4 overflow-auto">
-                Update Profile
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <TextInput
-                  id="firstName"
-                  type="text"
-                  name="firstName"
-                  label="First Name"
-                />
+            <div className="flex flex-col gap-4 border p-8 rounded-xl z-10">
+              <div className="flex flex-wrap justify-between items-center">
+                <div className="flex gap-4">
+                  <div className="relative -z-10">
+                    <img
+                      src={Images.profilePic}
+                      alt="profile"
+                    />
+                    <div className="absolute bottom-0 right-0 cursor-pointer">
+                      <img
+                        src={Images.profileEdit}
+                        alt="profile"
+                      />
+                    </div>
+                  </div>
 
-                <TextInput
-                  id="lastName"
-                  type="text"
-                  name="lastName"
-                  label="Last Name"
-                />
-
-                <TextInput
-                  id="User_ZipCode"
-                  type="text"
-                  name="User_ZipCode"
-                  label="Zip Code"
-                />
-
-                <TextInput
-                  id="User_City"
-                  type="text"
-                  name="User_City"
-                  label="City"
-                />
-
-                <TextInput
-                  id="User_State"
-                  type="text"
-                  name="User_State"
-                  label="State"
-                />
-
-                <TextInput
-                  id="email"
-                  type="email"
-                  name="email"
-                  label="Email"
-                />
-
-                {/* <TextInput
-              id="login"
-              type="text"
-              name="login"
-              label="Login"
-              className="mb-4"
-            /> */}
-
-                {/* <TextInput
-              id="User_Role"
-              type="text"
-              name="User_Role"
-              label="Role"
-              className="mb-4"
-            /> */}
-
-                <TextInput
-                  id="User_County"
-                  type="text"
-                  name="User_County"
-                  label="County"
-                />
-
-                <TextInput
-                  id="User_Country"
-                  type="text"
-                  name="User_Country"
-                  label="Country"
-                />
-
-                <TextInput
-                  id="mobilePhone"
-                  type="text"
-                  name="mobilePhone"
-                  label="Mobile Phone"
-                />
-
-                <TextInput
-                  id="secondEmail"
-                  type="email"
-                  name="secondEmail"
-                  label="Second Email"
-                />
+                  {/* profile text  */}
+                  <div className="flex flex-col justify-center">
+                    <span className="font-button">
+                      {formik.values.firstName + " " + formik.values.lastName}
+                    </span>
+                    <span className="text-filter-text font-filter">
+                      {formik.values.email}
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <CustomButton
+                    type="submit"
+                    disabled={isUpating}
+                    className="btn-secondary-outline rounded-md text-sapphire font-button w-[168px]"
+                  >
+                    Save
+                  </CustomButton>
+                </div>
               </div>
 
-              {/* Submit button */}
-              <CustomButton
-                type="submit"
-                isLoading={isLoading}
-                className="btn-primary w-full font-button"
-              >
-                Update
-              </CustomButton>
+              <div className="border p-4 rounded-xl">
+                <div className="font-h4 text-h4">Personal Information</div>
+                <div className="grid  md:grid-cols-3 p-4 gap-4">
+                  <TextInput
+                    id="firstName"
+                    type="text"
+                    name="firstName"
+                    label="First Name"
+                    className="border-none"
+                  />
+
+                  <TextInput
+                    id="lastName"
+                    type="text"
+                    name="lastName"
+                    label="Last Name"
+                    className="border-none"
+                  />
+                  <div></div>
+                  <TextInput
+                    id="email"
+                    type="email"
+                    name="email"
+                    label="Email"
+                    className="border-none"
+                  />
+                  <TextInput
+                    id="mobilePhone"
+                    type="text"
+                    name="mobilePhone"
+                    label="Phone"
+                  />
+                  <TextInput
+                    id="User_ZipCode"
+                    type="text"
+                    name="User_ZipCode"
+                    label="Zip Code"
+                    className="border-none"
+                  />
+                </div>
+              </div>
+
+              <div className="border p-4 rounded-xl">
+                <div className="font-h5 text-h5">My Bio</div>
+                <div className=" font-filter">
+                  I’m a teacher from Kansas who loves teaching Zoology. I love
+                  science and animals are awesome.
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="flex flex-col gap-4">
+                  <div className="border rounded-xl p-4 text-h6">
+                    <div>Grade Level(s)</div>
+                    <div className="flex flex-wrap gap-2 pt-2  text-body-text ">
+                      {grade.selectedItems.map((e, i) => (
+                        <div
+                          key={i}
+                          className="bg-fluorite px-4 py-1 rounded-3xl text-nowrap truncate"
+                        >
+                          {e.label}
+                        </div>
+                      ))}
+                      <div
+                        onClick={() => openModal(grade)}
+                        className="cursor-pointer border-2 border-fluorite text-fluorite px-4 py-1 rounded-3xl text-nowrap"
+                      >
+                        + Add
+                      </div>
+                    </div>
+                  </div>
+                  <div className="border rounded-xl p-4 text-h6">
+                    <div>Role</div>
+                    <div className="flex flex-wrap gap-2 pt-2 text-body-text">
+                      {roles.selectedItems.map((e, i) => (
+                        <div
+                          key={i}
+                          className="bg-fluorite px-4 py-1 rounded-3xl text-nowrap truncate"
+                        >
+                          {e.label}
+                        </div>
+                      ))}
+                      <div
+                        onClick={() => openModal(roles)}
+                        className="cursor-pointer border-2 border-fluorite text-fluorite px-4 py-1 rounded-3xl text-nowrap"
+                      >
+                        + Add
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="border rounded-xl p-4 text-h6">
+                  <div>School Setting(s)</div>
+                  <div className="flex flex-wrap gap-2 pt-2 text-body-text">
+                    {schoolSettings.selectedItems.map((e, i) => (
+                      <div
+                        key={i}
+                        className="bg-fluorite px-4 py-1 rounded-3xl text-nowrap truncate"
+                      >
+                        {e.label}
+                      </div>
+                    ))}
+                    <div
+                      onClick={() => openModal(schoolSettings)}
+                      className="cursor-pointer border-2 border-fluorite text-fluorite px-4 py-1 rounded-3xl text-nowrap"
+                    >
+                      + Add
+                    </div>
+                  </div>
+                </div>
+                <div className="border rounded-xl p-4 text-h6">
+                  <div>Subject(s)</div>
+                  <div className="flex flex-wrap gap-2 pt-2 text-body-text">
+                    {subjectTaught.selectedItems.map((e, i) => (
+                      <div
+                        key={i}
+                        className="bg-fluorite px-4 py-1 rounded-3xl text-nowrap truncate"
+                      >
+                        {e.label}
+                      </div>
+                    ))}
+                    <div
+                      onClick={() => openModal(subjectTaught)}
+                      className="cursor-pointer border-2 border-fluorite text-fluorite px-4 py-1 rounded-3xl"
+                    >
+                      + Add
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </Form>
         </FormikProvider>
-      </div>
+      )}
+      {!isProfile && (
+        <div className="p-8 font-h5 text-neutral-400 text-h5 border rounded-xl h-[50vh]">
+          No Classroom available yet
+        </div>
+      )}
+
+      {isOpen && (
+        <Modal
+          isOpen={isOpen}
+          autoClose={true}
+          onClose={closeModal}
+        >
+          <TabModel
+            modalData={modalData}
+            closeModal={closeModal}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

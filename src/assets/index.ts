@@ -22,6 +22,24 @@ import cross from './images/cross.svg'
 
 import john from './images/jon.svg'
 import editIcon from './images/editIcon.png'
+import bannerLeftIcon from './images/bannerLeft.svg'
+import bannerRightIcon from './images/bannerRight.svg'
+import whiteCross from './images/whiteCross.svg'
+
+import activity from './images/activity.svg'
+import resource from './images/resources.svg'
+import shopEmpowered from './images/shopEmpowered.svg'
+import professionalDevelopment from './images/professionalDevelopment.svg'
+import community2 from './images/community1.svg'
+import mightyNetwork from './images/mightyNetwork.svg'
+import support from './images/support.svg'
+
+import profileLogo from './images/profileLogo.svg';
+import logout from './images/logout.svg'
+import sidebarLeft from './images/sidebarLeft.svg';
+import sidebarRight from './images/sidebarRight.svg';
+import profilePic from './images/profilePic.svg';
+import profileEdit from './images/profileEdit.svg';
 
 const Images = {
     logo,
@@ -46,6 +64,26 @@ const Images = {
     user4,
     cross,
     editIcon,
+    bannerLeftIcon,
+    bannerRightIcon,
+    whiteCross,
+
+    // sidebar icons
+    activity,
+    resource,
+    shopEmpowered,
+    professionalDevelopment,
+    community2,
+    mightyNetwork,
+    support,
+    sidebarLeft,
+    sidebarRight,
+
+    // profile icons
+    profilePic,
+    profileEdit,
+    profileLogo,
+    logout,
 }
 
 export default Images;

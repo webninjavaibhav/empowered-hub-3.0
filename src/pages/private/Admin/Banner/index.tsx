@@ -12,7 +12,6 @@ function Banner() {
   return (
     <div>
       <div className="bg-topaz  p-2 text-h3 font-h3">Customized banner </div>
-
       <FormikProvider value={formik}>
         <Form className="h-full">
           <div className="grid grid-col-1 md:grid-cols-3  border-2 m-4 gap-4">
@@ -33,9 +32,7 @@ function Banner() {
                   />
                   <div className="text-xl font-bold">{e.title}</div>
                   <div className="">{e.description}</div>
-                  <CustomButton className="btn-primary w-[120px]">
-                    {e.link}
-                  </CustomButton>
+                  <div className="underline bg-fluorite">{e.link}</div>
                 </div>
               );
             })}

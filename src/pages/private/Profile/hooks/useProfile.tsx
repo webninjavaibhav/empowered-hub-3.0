@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 
 const useProfile = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isUpating, setIsUpdating] = useState<boolean>(false);
   const info = localStorage.getItem("okta-token-storage");
   const user = info && JSON.parse(info);
   const userId = user?.accessToken?.claims?.uid;
@@ -12,6 +13,7 @@ const useProfile = () => {
   const formik = useFormik({
     initialValues: initialUserProfile,
     onSubmit: async (values) => {
+      setIsUpdating(true);
       const formate = {
         profile: {
           ...values,
@@ -37,6 +39,8 @@ const useProfile = () => {
         toast.success("Update user successfully");
       } catch (error) {
         toast.error("Something went wrong !");
+      } finally {
+        setIsUpdating(false);
       }
     },
     validationSchema: profileValidation,
@@ -52,7 +56,7 @@ const useProfile = () => {
 
       Object.keys(parsedVal.profile).map((key) => {
         parsedVal.profile[key] =
-          parsedVal.profile[key] === null ? "" : parsedVal.profile[key];
+          parsedVal.profile[key] === null ? "" : parsedVal.profile[key] || "-";
       });
       formik.setValues(parsedVal.profile);
     } catch (error) {
@@ -68,6 +72,7 @@ const useProfile = () => {
   return {
     formik,
     isLoading,
+    isUpating,
   };
 };
 

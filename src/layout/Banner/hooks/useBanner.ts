@@ -6,49 +6,52 @@ type BannerProp = {
     title: string;
     description: string;
     link: string;
-}
+};
 
-// Sample banner data
 const useBannerRotator = () => {
-    const [isShow, setIsShow] = useState<boolean>(true)
+    const [isShow, setIsShow] = useState<boolean>(true);
     const [banners, setBanners] = useState<BannerProp[]>([]);
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-    const handleShow = () => setIsShow(false)
-
+    const handleShow = () => setIsShow(false);
+    const handleNext = () => setCurrentIndex((prevIndex) => (prevIndex + 1) % banners.length);
+    const handlePrev = () => setCurrentIndex((prevIndex) => (prevIndex - 1 + banners.length) % banners.length);
 
     const getBanner = async () => {
         try {
-            const response = await fetch(
-                `${import.meta.env.VITE_BACKEND_BASEURL}banner`
-            );
-            const parsedVal = await response.json();
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_BASEURL}banner`);
+            const parsedVal: BannerProp[] = await response.json();
             setBanners(parsedVal);
         } catch (error) {
-            toast.error("Something went wrong !");
+            toast.error("Something went wrong!");
         }
     };
 
-
     useEffect(() => {
         getBanner();
-    }, []); // Update when data changes
+    }, []);
 
     useEffect(() => {
-        const isValid = banners.length > 0 ? true : false;
-        const intervalId: any = isValid ? setInterval(() => {
+        const isValid = banners.length > 0;
+        const intervalId: number | undefined = isValid ? window.setInterval(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % banners.length);
-        }, 3000) : '';
+        }, 3000) : undefined;
 
-        // Cleanup interval on component unmount
-        return () => clearInterval(intervalId);
+        return () => {
+            if (intervalId !== undefined) {
+                clearInterval(intervalId);
+            }
+        };
     }, [banners]);
 
     return {
-        data: banners[currentIndex],
+        data: banners.length > 0 ? banners[currentIndex] : null,
         handleShow,
+        handleNext,
+        handlePrev,
+        banners,
         isShow
-    }
+    };
 };
 
 export default useBannerRotator;
