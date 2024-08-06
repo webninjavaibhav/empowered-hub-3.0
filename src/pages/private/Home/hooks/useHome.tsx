@@ -10,8 +10,6 @@ const useHome = () => {
     isNewUser === "true" ? true : false
   );
 
-  console.log(formModal, " isNewUser");
-
   const handleClose = () => {
     localStorage.setItem("isNewUser", "false");
     setFormModal(false);
