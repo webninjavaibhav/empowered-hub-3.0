@@ -9,9 +9,11 @@ const useAuth = () => {
     const { authState } = useOktaAuth();
     const [searchParams] = useSearchParams();
     const profileBuilder = searchParams.get("profilebuilder");
-
     const [userRole, setUserRole] = useState(localStorage.getItem('userRole') || "")
-    const [isNewUser] = useState(localStorage.getItem('isNewUser') || "")
+
+    // comment for now 
+    // const [isNewUser] = useState(localStorage.getItem('isNewUser') || "")
+    const [isNewUser] = useState(profileBuilder ? true : false)
 
     const handleSetUser = (role: string) => {
         localStorage.setItem('userRole', role);
