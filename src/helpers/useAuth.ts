@@ -12,8 +12,7 @@ const useAuth = () => {
     const [userRole, setUserRole] = useState(localStorage.getItem('userRole') || "")
 
     // comment for now 
-    // const [isNewUser] = useState(localStorage.getItem('isNewUser') || "")
-    const [isNewUser] = useState(profileBuilder ? true : false)
+    const [isNewUser] = useState(localStorage.getItem('isNewUser') || "")
 
     const handleSetUser = (role: string) => {
         localStorage.setItem('userRole', role);
@@ -34,6 +33,7 @@ const useAuth = () => {
         isAuthenticated: authState?.isAuthenticated ? true : false,
         userRole,
         isNewUser,
+        navigation,
         handleSetUser,
     }
 }
