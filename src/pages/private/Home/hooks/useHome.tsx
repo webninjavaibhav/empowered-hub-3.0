@@ -4,8 +4,6 @@ import useAuth from "../../../../helpers/useAuth";
 //comment for now
 const useHome = () => {
   const { userRole, isNewUser, handleSetUser, navigation } = useAuth();
-
-  // comment for now
   const [formModal, setFormModal] = useState<boolean>(isNewUser);
 
   const handleClose = () => {

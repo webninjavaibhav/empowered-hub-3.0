@@ -32,7 +32,7 @@ const useNavbar = () => {
         localStorage.clear();
         sessionStorage.clear();
         try {
-            await oktaAuth.closeSession();
+            await oktaAuth.signOut();
         } catch (err) {
             toast.error(JSON.stringify(err));
         }
