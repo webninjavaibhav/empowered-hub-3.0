@@ -7,7 +7,7 @@ const useHome = () => {
 
   // comment for now
   const [formModal, setFormModal] = useState<boolean>(
-    isNewUser != "false" ? true : false
+    isNewUser === "true" ? true : false
   );
 
   console.log(formModal, " isNewUser");
