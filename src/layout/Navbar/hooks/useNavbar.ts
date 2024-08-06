@@ -27,16 +27,11 @@ const useNavbar = () => {
     useEffect(() => {
         userId && getUserProfile()
     }, [userId])
-
     const logout = async () => {
         localStorage.clear();
         sessionStorage.clear();
-        const basename = window.location.origin + "/login";
-        window.location.replace(basename)
-
         try {
-            await oktaAuth.signOut(
-                { postLogoutRedirectUri: basename });
+            await oktaAuth.closeSession()
         } catch (err) {
             toast.error(JSON.stringify(err));
         }
