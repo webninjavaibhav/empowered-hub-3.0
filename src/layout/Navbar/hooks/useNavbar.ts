@@ -2,9 +2,6 @@ import { useOktaAuth } from "@okta/okta-react";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-
-
-
 const useNavbar = () => {
     const { oktaAuth } = useOktaAuth();
     const [isHovered, setIsHovered] = useState(false);
@@ -31,22 +28,13 @@ const useNavbar = () => {
         userId && getUserProfile()
     }, [userId])
 
-    const isCorsError = (err: any) =>
-        err.name === "AuthApiError" &&
-        !err.errorCode &&
-        err.xhr.message === "Failed to fetch";
-
     const logout = async () => {
         localStorage.clear();
-        const basename = window.location.origin;
+        sessionStorage.clear();
         try {
-            await oktaAuth.signOut({ postLogoutRedirectUri: basename });
+            await oktaAuth.closeSession();
         } catch (err) {
-            if (isCorsError(err)) {
-                toast.error(JSON.stringify(err));
-            } else {
-                throw err;
-            }
+            toast.error(JSON.stringify(err));
         }
     };
 

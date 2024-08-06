@@ -6,9 +6,7 @@ const useHome = () => {
   const { userRole, isNewUser, handleSetUser, navigation } = useAuth();
 
   // comment for now
-  const [formModal, setFormModal] = useState<boolean>(
-    isNewUser === "true" ? true : false
-  );
+  const [formModal, setFormModal] = useState<boolean>(isNewUser);
 
   const handleClose = () => {
     localStorage.setItem("isNewUser", "false");
