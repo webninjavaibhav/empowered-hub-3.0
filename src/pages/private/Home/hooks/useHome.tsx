@@ -9,8 +9,6 @@ const useHome = () => {
   // const [formModal, setFormModal] = useState<boolean>(isNewUser != "false" ? true : false
   const [formModal, setFormModal] = useState<boolean>(isNewUser ? true : false);
 
-  console.log(formModal, " isNewUser");
-
   const handleClose = () => {
     setFormModal(false);
     localStorage.setItem("isNewUser", "false");
