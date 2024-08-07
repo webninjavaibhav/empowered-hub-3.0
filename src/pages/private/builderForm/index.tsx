@@ -21,6 +21,7 @@ const BuilderForm: React.FC<BuilderProp> = ({ handleClose }) => {
   const { step, data, handleNext, handlePrev } = useBuilder();
 
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
   const handleOptionChange = (option: Option) => {
     setSelectedOption(option.label);
   };
@@ -94,7 +95,10 @@ const BuilderForm: React.FC<BuilderProp> = ({ handleClose }) => {
                   />
                 }
                 className="btn-secondary w-[120px] ms-2"
-                onClick={handleNext}
+                onClick={() => {
+                  setSelectedOption(null);
+                  handleNext();
+                }}
                 disabled={!selectedOption}
               >
                 Next
@@ -109,7 +113,10 @@ const BuilderForm: React.FC<BuilderProp> = ({ handleClose }) => {
                   />
                 }
                 className="btn-secondary w-[120px] ms-2"
-                onClick={handleClose}
+                onClick={() => {
+                  setSelectedOption(null);
+                  handleClose();
+                }}
                 disabled={!selectedOption}
               >
                 Submit
