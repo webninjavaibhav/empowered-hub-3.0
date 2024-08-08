@@ -20,23 +20,6 @@ const useAuth = () => {
         setUserRole(role)
     }
 
-    const getSalesforceAccessToken = async (id: string) => {
-        try {
-            const token = await axios.get(`${import.meta.env.VITE_BACKEND_BASEURL}get-token/getToken`);
-            const contact = await axios.get(
-                `${import.meta.env.VITE_BACKEND_BASEURL}contact/getContact/${id}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token.data.access_token}`,
-                    },
-                }
-            );
-            localStorage.setItem('salesforceToken', token.data.access_token);
-            localStorage.setItem('userProfile', JSON.stringify(contact));
-        } catch (error) {
-            console.error("Error fetching Salesforce token:", error);
-        }
-    }
 
     useEffect(() => {
         if (authState?.isAuthenticated === false) {
@@ -45,9 +28,6 @@ const useAuth = () => {
         if (profileBuilder) {
             localStorage.setItem("isNewUser", "true");
             setNewUser("true");
-        }
-        if (authState?.idToken?.claims?.sub) {
-            getSalesforceAccessToken(authState?.idToken?.claims?.sub)
         }
     }, [authState]);
 

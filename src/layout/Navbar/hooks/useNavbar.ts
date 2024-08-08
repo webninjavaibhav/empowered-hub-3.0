@@ -1,29 +1,34 @@
 import { useOktaAuth } from "@okta/okta-react";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 
 const useNavbar = () => {
-    const { oktaAuth } = useOktaAuth();
+    const { oktaAuth, authState } = useOktaAuth();
     const [isHovered, setIsHovered] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
-    const info = localStorage.getItem("okta-token-storage");
-    const user = info && JSON.parse(info);
-    const userId = user?.accessToken?.claims?.uid;
+    const userId = authState?.idToken?.claims?.sub;
 
     const getUserProfile = async () => {
         try {
-            const response = await fetch(
-                `${import.meta.env.VITE_BACKEND_BASEURL}user/${userId}`
+            const token = await axios.get(`${import.meta.env.VITE_BACKEND_BASEURL}get-token/getToken`);
+            const contact = await axios.get(
+                `${import.meta.env.VITE_BACKEND_BASEURL}contact/getContact/${userId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token.data.access_token}`,
+                    },
+                }
             );
-            const parsedVal = await response.json();
-            localStorage.setItem("user", JSON.stringify(parsedVal.profile));
             setIsLoading(false)
+            localStorage.setItem('salesforceToken', token.data.access_token);
+            localStorage.setItem('userProfile', JSON.stringify(contact.data));
         } catch (error) {
-            toast.error("Something went wrong !");
+            console.error("Error fetching Salesforce token:", error);
         }
-    };
+    }
 
     useEffect(() => {
         userId && getUserProfile()
@@ -56,7 +61,7 @@ const useNavbar = () => {
         setIsHovered(false);
     };
 
-    const savedUser = localStorage.getItem("user");
+    const savedUser = localStorage.getItem("userProfile");
 
 
     return {

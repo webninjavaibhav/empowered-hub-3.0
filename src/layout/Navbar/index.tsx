@@ -25,9 +25,7 @@ function Navbar() {
             <Loader />
           ) : (
             <>
-              <span className="font-button capitalize">
-                {`${user?.firstName}  ${user?.lastName}`}
-              </span>
+              <span className="font-button capitalize">{user?.Name}</span>
               <img
                 src={Images.john}
                 alt="profile"
@@ -47,9 +45,9 @@ function Navbar() {
                     />
                   </div>
                   <div className="flex flex-col gap-1">
-                    <div className=" capitalize">{`${user?.firstName}  ${user?.lastName}`}</div>
+                    <div className=" capitalize">{user?.Name}</div>
                     <div className="text-xs text-nowrap">
-                      {user?.email ?? ""}
+                      {user?.Email ?? ""}
                     </div>
                     <div className="text-filter-text text-fluorite cursor-pointer">
                       <Link to="profile">View Profile &#8599;</Link>
