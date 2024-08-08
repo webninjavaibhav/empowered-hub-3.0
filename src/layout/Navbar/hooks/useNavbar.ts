@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 
-
-
 const useNavbar = () => {
     const { oktaAuth } = useOktaAuth();
     const [isHovered, setIsHovered] = useState(false);
@@ -39,9 +37,8 @@ const useNavbar = () => {
     const logout = async () => {
         localStorage.clear();
         sessionStorage.clear();
-        const basename = window.location.origin;
         try {
-            await oktaAuth.signOut({ postLogoutRedirectUri: basename });
+            await oktaAuth.signOut();
         } catch (err) {
             if (isCorsError(err)) {
                 toast.error(JSON.stringify(err));

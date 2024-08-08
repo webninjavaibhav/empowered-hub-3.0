@@ -36,6 +36,7 @@ const useSignUp = () => {
     values["User_County"] = "state";
     values["User_Country"] = "united state";
     values["login"] = values.email;
+    values["division"] = "HUB3";
 
     let f1 = { profile: { ...values } };
 

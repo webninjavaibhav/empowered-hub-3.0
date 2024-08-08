@@ -38,7 +38,7 @@ function Navbar() {
 
           {isHovered && (
             <div className="absolute bg-white p-6 border right-0 top-[40px] rounded-lg text-carbon shadow-2xl">
-              <div className="flex flex-col ">
+              <div className="flex flex-col">
                 <div className="flex gap-2">
                   <div className="h-[24px] w-[24px]">
                     <img

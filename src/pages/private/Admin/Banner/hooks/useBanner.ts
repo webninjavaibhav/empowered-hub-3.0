@@ -48,7 +48,7 @@ const useBanner = () => {
     const getBanner = async () => {
         try {
             const response = await fetch(
-                `${import.meta.env.VITE_BACKEND_BASEURL}banner`
+                `${import.meta.env.VITE_BACKEND_BASEURL}notification`
             );
             const parsedVal = await response.json();
             setBanners(parsedVal);
@@ -60,7 +60,7 @@ const useBanner = () => {
     const updateBanner = async (values: BannerProp) => {
         try {
             const response = await fetch(
-                `${import.meta.env.VITE_BACKEND_BASEURL}banner/${values.id}`,
+                `${import.meta.env.VITE_BACKEND_BASEURL}notification/${values.id}`,
                 {
                     method: "PUT",
                     headers: {

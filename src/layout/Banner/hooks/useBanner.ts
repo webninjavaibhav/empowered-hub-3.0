@@ -19,7 +19,7 @@ const useBannerRotator = () => {
 
     const getBanner = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_BASEURL}banner`);
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_BASEURL}notification`);
             const parsedVal: BannerProp[] = await response.json();
             setBanners(parsedVal);
         } catch (error) {
