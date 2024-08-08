@@ -71,7 +71,6 @@ const useBanner = () => {
             );
             closeModal();
             return await response.json();
-
         } catch (error) {
             return toast.error("Something went wrong !");
         }
