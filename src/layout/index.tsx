@@ -25,7 +25,7 @@ function index() {
           <Sidebar />
           <div
             className={clsx(
-              "w-full overflow-auto",
+              "w-full overflow-auto p-2",
               isShow ? " h-[78vh]" : " h-[87vh]"
             )}
           >
