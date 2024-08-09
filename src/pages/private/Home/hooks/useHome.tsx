@@ -1,14 +1,13 @@
 import { useState } from "react";
 import useAuth from "../../../../helpers/useAuth";
-
-//comment for now
 const useHome = () => {
-  const { userRole, isNewUser, handleSetUser, navigation } = useAuth();
-  const [formModal, setFormModal] = useState<boolean>(isNewUser);
+  const { userRole, profileBuilderStep, handleSetUser, navigation } = useAuth();
+  const [formModal, setFormModal] = useState<number | string>(
+    profileBuilderStep
+  );
 
   const handleClose = () => {
-    localStorage.setItem("isNewUser", "false");
-    setFormModal(false);
+    setFormModal("completed");
     navigation("/");
   };
 

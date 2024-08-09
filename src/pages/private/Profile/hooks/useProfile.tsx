@@ -60,7 +60,7 @@ const useProfile = () => {
     if (userProfile?.Contact_ID__c) {
       formik.setValues({
         FirstName: userProfile?.FirstName,
-        LastName: userProfile?.LastName,
+        LastName: userProfile?.LastName.replaceAll("_0", ""),
         Email: userProfile?.Email,
       });
     }

@@ -1,10 +1,8 @@
 import React from "react";
-import Modal from "../../../components/Modal";
-
 import useHome from "./hooks/useHome";
-
 import Role from "../builderForm/Role";
 import BuilderForm from "../builderForm";
+import Modal from "../../../components/Modal";
 
 const Home: React.FC = () => {
   const { formModal, handleClose, userRole, handleSetUser } = useHome();
@@ -16,7 +14,7 @@ const Home: React.FC = () => {
       <Modal
         autoClose={false}
         onClose={handleClose}
-        isOpen={formModal}
+        isOpen={formModal !== "completed"}
         className="w-full md:w-4/5 xl:w-2/3"
       >
         <div>

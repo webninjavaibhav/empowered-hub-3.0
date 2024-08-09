@@ -77,7 +77,9 @@ function Profile() {
                   {/* profile text  */}
                   <div className="flex flex-col justify-center">
                     <span className="font-button">
-                      {user?.FirstName + " " + user?.LastName}
+                      {user?.FirstName +
+                        " " +
+                        user?.LastName.replaceAll("_0", "")}
                     </span>
                     <span className="text-filter-text font-filter">
                       {user?.Email}

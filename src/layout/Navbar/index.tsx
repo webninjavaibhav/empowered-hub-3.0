@@ -41,7 +41,7 @@ function Navbar() {
         ) : (
           <>
             <span className="font-button capitalize">
-              {user?.FirstName + " " + user?.LastName}
+              {user?.FirstName + " " + user?.LastName.replaceAll("_0", "")}
             </span>
             <img
               src={Images.john}
@@ -63,7 +63,9 @@ function Navbar() {
                 </div>
                 <div className="flex flex-col gap-1">
                   <div className=" capitalize">
-                    {user?.FirstName + " " + user?.LastName}
+                    {user?.FirstName +
+                      " " +
+                      user?.LastName.replaceAll("_0", "")}
                   </div>
                   <div className="text-xs text-nowrap">{user?.Email ?? ""}</div>
                   <div className="text-filter-text text-fluorite cursor-pointer">
