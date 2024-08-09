@@ -21,7 +21,7 @@ function Profile() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [modalData, setModalData] = useState<any>({});
 
-  const { isLoading, formik, isUpating } = useProfile();
+  const { isLoading, formik, isUpating, user } = useProfile();
   const [activeTab, setActiveTab] = useState(profileTabs[0].value);
 
   const isProfile = activeTab === "myProfile" ? true : false;
@@ -77,10 +77,10 @@ function Profile() {
                   {/* profile text  */}
                   <div className="flex flex-col justify-center">
                     <span className="font-button">
-                      {formik.values.firstName + " " + formik.values.lastName}
+                      {user?.FirstName + " " + user?.LastName}
                     </span>
                     <span className="text-filter-text font-filter">
-                      {formik.values.email}
+                      {user?.Email}
                     </span>
                   </div>
                 </div>
@@ -99,25 +99,25 @@ function Profile() {
                 <div className="font-h4 text-h4">Personal Information</div>
                 <div className="grid  md:grid-cols-3 p-4 gap-4">
                   <TextInput
-                    id="firstName"
+                    id="FirstName"
                     type="text"
-                    name="firstName"
+                    name="FirstName"
                     label="First Name"
                     className="border-none"
                   />
 
                   <TextInput
-                    id="lastName"
+                    id="LastName"
                     type="text"
-                    name="lastName"
+                    name="LastName"
                     label="Last Name"
                     className="border-none"
                   />
                   <div></div>
                   <TextInput
-                    id="email"
+                    id="Email"
                     type="email"
-                    name="email"
+                    name="Email"
                     label="Email"
                     className="border-none"
                   />

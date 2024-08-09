@@ -1,41 +1,51 @@
 import { useEffect, useState } from "react";
-import { initialUserProfile, profileValidation } from "../constants";
 import { useFormik } from "formik";
 import toast from "react-hot-toast";
 
+import { initialUserProfile, profileValidation } from "../constants";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { updateProfile } from "../../../../redux/feature/user/profileSlice";
+
 const useProfile = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const { user: userProfile, isLoading } = useAppSelector(
+    (state) => state.profile
+  );
+
   const [isUpating, setIsUpdating] = useState<boolean>(false);
-  const info = localStorage.getItem("okta-token-storage");
-  const user = info && JSON.parse(info);
-  const userId = user?.accessToken?.claims?.uid;
+  const contactId = userProfile?.Contact_ID__c;
+  const token = localStorage.getItem("salesforceToken");
 
   const formik = useFormik({
     initialValues: initialUserProfile,
     onSubmit: async (values) => {
       setIsUpdating(true);
+
       const formate = {
-        profile: {
-          ...values,
-        },
+        FirstName: values.FirstName,
+        LastName: values.LastName,
+        Email: values.Email,
       };
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_BASEURL}user/${userId}`,
+          `${import.meta.env.VITE_BACKEND_BASEURL}contact/update/${contactId}`,
           {
             method: "POST",
             headers: {
+              Accept: "application/json",
               "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(formate),
           }
         );
-        const data = await response.json();
-
-        if (data) {
-          localStorage.setItem("user", JSON.stringify(data.profile));
-        }
-
+        await response.json();
+        const f1 = {
+          FirstName: values.FirstName,
+          LastName: values.LastName,
+          Email: values.Email,
+        };
+        dispatch(updateProfile(f1));
         toast.success("Update user successfully");
       } catch (error) {
         toast.error("Something went wrong !");
@@ -46,30 +56,18 @@ const useProfile = () => {
     validationSchema: profileValidation,
   });
 
-  const getUserProfile = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_BASEURL}user/${userId}`
-      );
-      const parsedVal = await response.json();
-
-      Object.keys(parsedVal.profile).map((key) => {
-        parsedVal.profile[key] =
-          parsedVal.profile[key] === null ? "" : parsedVal.profile[key] || "-";
-      });
-      formik.setValues(parsedVal.profile);
-    } catch (error) {
-      toast.error("Something went wrong !");
-    }
-    setIsLoading(false);
-  };
-
   useEffect(() => {
-    userId && getUserProfile();
-  }, [userId]);
+    if (userProfile?.Contact_ID__c) {
+      formik.setValues({
+        FirstName: userProfile?.FirstName,
+        LastName: userProfile?.LastName,
+        Email: userProfile?.Email,
+      });
+    }
+  }, [userProfile]);
 
   return {
+    user: userProfile,
     formik,
     isLoading,
     isUpating,

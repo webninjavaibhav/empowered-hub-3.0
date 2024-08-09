@@ -1,13 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from './feature/counter/counterSlice'
+import profileReducer from './feature/user/profileSlice'
 import { oktaApi } from '../services/oktaApi'
 
 export const store = configureStore({
     reducer: {
-        counter: counterReducer,
+        profile: profileReducer,
         [oktaApi.reducerPath]: oktaApi.reducer,
     },
-
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(oktaApi.middleware),
 })

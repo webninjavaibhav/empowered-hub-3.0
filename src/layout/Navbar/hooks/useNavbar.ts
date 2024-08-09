@@ -2,17 +2,22 @@ import { useOktaAuth } from "@okta/okta-react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { updateLoading, updateProfile } from "../../../redux/feature/user/profileSlice";
 
 
 const useNavbar = () => {
+    const dispatch = useAppDispatch();
+    const { user: userProfile, isLoading } = useAppSelector((state) => state.profile);
+
     const { oktaAuth, authState } = useOktaAuth();
     const [isHovered, setIsHovered] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
 
     const userId = authState?.idToken?.claims?.sub;
 
     const getUserProfile = async () => {
         try {
+            dispatch(updateLoading(true))
             const token = await axios.get(`${import.meta.env.VITE_BACKEND_BASEURL}get-token/getToken`);
             const contact = await axios.get(
                 `${import.meta.env.VITE_BACKEND_BASEURL}contact/getContact/${userId}`,
@@ -22,17 +27,15 @@ const useNavbar = () => {
                     },
                 }
             );
-            setIsLoading(false)
             localStorage.setItem('salesforceToken', token.data.access_token);
-            localStorage.setItem('userProfile', JSON.stringify(contact.data));
+            dispatch(updateProfile(contact.data));
         } catch (error) {
-            console.error("Error fetching Salesforce token:", error);
+            toast.error("User profile not found !");
+        } finally {
+            dispatch(updateLoading(false))
         }
     }
 
-    useEffect(() => {
-        userId && getUserProfile()
-    }, [userId])
 
     const isCorsError = (err: any) =>
         err.name === "AuthApiError" &&
@@ -61,11 +64,13 @@ const useNavbar = () => {
         setIsHovered(false);
     };
 
-    const savedUser = localStorage.getItem("userProfile");
+    useEffect(() => {
+        userId && getUserProfile()
+    }, [userId])
 
 
     return {
-        user: savedUser && JSON.parse(savedUser),
+        user: userProfile,
         isHovered,
         handleMouseEnter,
         handleMouseLeave,
