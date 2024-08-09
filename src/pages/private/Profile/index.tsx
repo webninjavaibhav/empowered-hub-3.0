@@ -58,7 +58,7 @@ function Profile() {
       {isProfile && (
         <FormikProvider value={formik}>
           <Form>
-            <div className="flex flex-col gap-4 border p-8 rounded-xl z-10">
+            <div className="flex flex-col gap-4 border p-8 rounded-md z-10">
               <div className="flex flex-wrap justify-between items-center">
                 <div className="flex gap-4">
                   <div className="relative -z-10">
@@ -95,7 +95,7 @@ function Profile() {
                 </div>
               </div>
 
-              <div className="border p-4 rounded-xl">
+              <div className="border p-4 rounded-md">
                 <div className="font-h4 text-h4">Personal Information</div>
                 <div className="grid  md:grid-cols-3 p-4 gap-4">
                   <TextInput
@@ -138,7 +138,7 @@ function Profile() {
                 </div>
               </div>
 
-              <div className="border p-4 rounded-xl">
+              <div className="border p-4 rounded-md">
                 <div className="font-h5 text-h5">My Bio</div>
                 <div className=" font-filter">
                   I’m a teacher from Kansas who loves teaching Zoology. I love
@@ -148,78 +148,78 @@ function Profile() {
 
               <div className="grid md:grid-cols-3 gap-4">
                 <div className="flex flex-col gap-4">
-                  <div className="border rounded-xl p-4 text-h6">
+                  <div className="border rounded-md p-4 text-h6">
                     <div>Grade Level(s)</div>
                     <div className="flex flex-wrap gap-2 pt-2  text-body-text ">
                       {grade.selectedItems.map((e, i) => (
                         <div
                           key={i}
-                          className="bg-fluorite px-4 py-1 rounded-3xl text-nowrap truncate"
+                          className="bg-fluorite px-4 py-1 rounded-md text-nowrap truncate"
                         >
                           {e.label}
                         </div>
                       ))}
                       <div
                         onClick={() => openModal(grade)}
-                        className="cursor-pointer border-2 border-fluorite text-fluorite px-4 py-1 rounded-3xl text-nowrap"
+                        className="cursor-pointer border-2 border-fluorite text-fluorite px-4 py-1 rounded-md text-nowrap"
                       >
                         + Add
                       </div>
                     </div>
                   </div>
-                  <div className="border rounded-xl p-4 text-h6">
+                  <div className="border rounded-md p-4 text-h6">
                     <div>Role</div>
                     <div className="flex flex-wrap gap-2 pt-2 text-body-text">
                       {roles.selectedItems.map((e, i) => (
                         <div
                           key={i}
-                          className="bg-fluorite px-4 py-1 rounded-3xl text-nowrap truncate"
+                          className="bg-fluorite px-4 py-1 rounded-md text-nowrap truncate"
                         >
                           {e.label}
                         </div>
                       ))}
                       <div
                         onClick={() => openModal(roles)}
-                        className="cursor-pointer border-2 border-fluorite text-fluorite px-4 py-1 rounded-3xl text-nowrap"
+                        className="cursor-pointer border-2 border-fluorite text-fluorite px-4 py-1 rounded-md text-nowrap"
                       >
                         + Add
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="border rounded-xl p-4 text-h6">
+                <div className="border rounded-md p-4 text-h6">
                   <div>School Setting(s)</div>
                   <div className="flex flex-wrap gap-2 pt-2 text-body-text">
                     {schoolSettings.selectedItems.map((e, i) => (
                       <div
                         key={i}
-                        className="bg-fluorite px-4 py-1 rounded-3xl text-nowrap truncate"
+                        className="bg-fluorite px-4 py-1 rounded-md text-nowrap truncate"
                       >
                         {e.label}
                       </div>
                     ))}
                     <div
                       onClick={() => openModal(schoolSettings)}
-                      className="cursor-pointer border-2 border-fluorite text-fluorite px-4 py-1 rounded-3xl text-nowrap"
+                      className="cursor-pointer border-2 border-fluorite text-fluorite px-4 py-1 rounded-md text-nowrap"
                     >
                       + Add
                     </div>
                   </div>
                 </div>
-                <div className="border rounded-xl p-4 text-h6">
+                <div className="border rounded-md p-4 text-h6">
                   <div>Subject(s)</div>
                   <div className="flex flex-wrap gap-2 pt-2 text-body-text">
                     {subjectTaught.selectedItems.map((e, i) => (
                       <div
                         key={i}
-                        className="bg-fluorite px-4 py-1 rounded-3xl text-nowrap truncate"
+                        className="bg-fluorite px-4 py-1 rounded-md text-nowrap truncate"
                       >
                         {e.label}
                       </div>
                     ))}
                     <div
                       onClick={() => openModal(subjectTaught)}
-                      className="cursor-pointer border-2 border-fluorite text-fluorite px-4 py-1 rounded-3xl"
+                      className="cursor-pointer border-2 border-fluorite text-fluorite px-4 py-1 rounded-md"
                     >
                       + Add
                     </div>
@@ -231,7 +231,7 @@ function Profile() {
         </FormikProvider>
       )}
       {!isProfile && (
-        <div className="p-8 font-h5 text-neutral-400 text-h5 border rounded-xl h-[50vh]">
+        <div className="p-8 font-h5 text-neutral-400 text-h5 border rounded-md h-[50vh]">
           No Classroom available yet
         </div>
       )}

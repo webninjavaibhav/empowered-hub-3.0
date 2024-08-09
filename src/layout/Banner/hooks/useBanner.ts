@@ -8,12 +8,10 @@ type BannerProp = {
     link: string;
 };
 
-const useBannerRotator = () => {
-    const [isShow, setIsShow] = useState<boolean>(true);
+const useBannerRotator = (handleClose: () => void) => {
     const [banners, setBanners] = useState<BannerProp[]>([]);
     const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-    const handleShow = () => setIsShow(false);
     const handleNext = () => setCurrentIndex((prevIndex) => (prevIndex + 1) % banners.length);
     const handlePrev = () => setCurrentIndex((prevIndex) => (prevIndex - 1 + banners.length) % banners.length);
 
@@ -22,6 +20,9 @@ const useBannerRotator = () => {
             const response = await fetch(`${import.meta.env.VITE_BACKEND_BASEURL}notification`);
             const parsedVal: BannerProp[] = await response.json();
             setBanners(parsedVal);
+            if (parsedVal.length > 0) {
+                handleClose()
+            }
         } catch (error) {
             toast.error("Something went wrong!");
         }
@@ -46,11 +47,9 @@ const useBannerRotator = () => {
 
     return {
         data: banners.length > 0 ? banners[currentIndex] : null,
-        handleShow,
         handleNext,
         handlePrev,
         banners,
-        isShow
     };
 };
 

@@ -1,5 +1,5 @@
 import Images from "../../assets";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import clsx from "clsx";
 
 const Sidebar = () => {
@@ -23,46 +23,26 @@ const Sidebar = () => {
       route: "/shop-empowered",
       icon: Images.shopEmpowered,
     },
-  ];
-
-  const secondryRoute = [
     {
       name: "Professional Development",
       route: "/professional-development",
       icon: Images.professionalDevelopment,
     },
+  ];
+
+  const secondryRoute = [
     {
       name: "Community",
       route: "/community",
       icon: Images.community2,
-    },
-    {
-      name: "Mighty Networks",
-      route: "/mighty-networks",
-      icon: Images.mightyNetwork,
     },
   ];
 
   return (
     <div className="group flex font-button">
       <div
-        className={`w-[90px] group-hover:w-[260px]  transition-all duration-[500ms] ease-in-out bg-sapphire text-white rounded-2xl flex flex-col justify-around`}
+        className={`w-[90px] group-hover:w-[260px]  transition-all duration-[500ms] ease-in-out bg-sapphire text-white flex flex-col rounded-b-md pt-3`}
       >
-        <Link to="/">
-          <div
-            className={clsx(
-              "flex gap-3 min-w-[90px] items-center p-[10px] rounded-t-2xl group-hover:ps-[20px] justify-center group-hover:justify-start"
-            )}
-          >
-            <img
-              src={Images.logo}
-              alt="logo"
-            />
-            <span className="text-fluorite hidden group-hover:block font-bold text-h4 transition-all duration-[700ms] ease-in-out">
-              HUB
-            </span>
-          </div>
-        </Link>
         <div className="flex flex-col gap-3 py-2">
           <div className="flex flex-col gap-2">
             {mainRoute?.map((nav) => {
@@ -137,23 +117,6 @@ const Sidebar = () => {
                 </div>
               );
             })}
-          </div>
-        </div>
-        <div></div>
-        <div></div>
-        <div className="flex flex-col justify-around">
-          <div className="flex items-center">
-            <div className="flex items-center justify-center min-w-[90px] h-[52px]">
-              <img
-                src={Images.support}
-                alt="profile"
-              />
-            </div>
-            <div
-              className={`group-hover:block whitespace-nowrap overflow-hidden transition-all duration-[700ms] ease-in-out`}
-            >
-              Support
-            </div>
           </div>
         </div>
       </div>

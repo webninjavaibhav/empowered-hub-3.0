@@ -23,7 +23,7 @@ const TabModel: React.FC<TypeModel> = ({ modalData, closeModal }) => {
             {modalData.selectedItems.map((e: any, i: number) => (
               <div
                 key={i}
-                className="bg-fluorite px-4 py-1 rounded-3xl text-nowrap truncate"
+                className="bg-fluorite px-4 py-1 rounded-md text-nowrap truncate"
               >
                 {e.label}
               </div>
@@ -37,7 +37,7 @@ const TabModel: React.FC<TypeModel> = ({ modalData, closeModal }) => {
             {modalData.items.map((e: any, i: number) => (
               <div
                 key={i}
-                className="border-fluorite border-2 px-4 py-1 rounded-3xl text-nowrap truncate"
+                className="border-fluorite border-2 px-4 py-1 rounded-md text-nowrap truncate"
               >
                 {e.label}
               </div>

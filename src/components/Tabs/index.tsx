@@ -14,11 +14,11 @@ export type TabsProp = {
 const Tabs: React.FC<TabsProp> = ({ tabs, activeTab, onChange }) => {
   return (
     <div className="flex">
-      <div className="flex bg-gray-200 p-2 rounded-3xl ">
+      <div className="flex bg-gray-200 p-2 rounded-md ">
         {tabs.map((tab) => (
           <div
             key={tab.label}
-            className={`button px-8 p-2 rounded-3xl cursor-pointer ${
+            className={`button px-8 p-2 rounded-md cursor-pointer ${
               tab.value === activeTab ? "bg-fluorite font-h5" : ""
             }`}
             onClick={() => onChange(tab.value)}
