@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useOktaAuth } from "@okta/okta-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
