@@ -59,7 +59,6 @@ function App() {
               path="/*"
               element={<Home />}
             />
-
             <Route
               path="/profile"
               element={<Profile />}
@@ -70,12 +69,10 @@ function App() {
             path="/admin"
             element={<Admin />}
           />
-
           <Route
             path="/login/callback"
             element={<LoginCallback />}
           />
-
           <Route
             path="/signup"
             element={<SignUp />}

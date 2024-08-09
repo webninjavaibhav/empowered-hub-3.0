@@ -11,12 +11,10 @@ const useAuth = () => {
     const [userRole, setUserRole] = useState(localStorage.getItem('userRole') || "")
 
     // comment for now 
-
     const handleSetUser = (role: string) => {
         localStorage.setItem('userRole', role);
         setUserRole(role)
     }
-
 
     useEffect(() => {
         if (authState?.isAuthenticated === false) {

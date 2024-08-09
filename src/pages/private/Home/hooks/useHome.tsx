@@ -1,4 +1,3 @@
-import { useState } from "react";
 import useAuth from "../../../../helpers/useAuth";
 import { useAppDispatch } from "../../../../redux/hooks";
 import { updateProfile } from "../../../../redux/feature/user/profileSlice";
@@ -14,9 +13,6 @@ const useHome = () => {
   } = useAuth();
   const dispatch = useAppDispatch();
   const token = localStorage.getItem("salesforceToken");
-  const [formModal, setFormModal] = useState<number | string>(
-    profileBuilderStep
-  );
 
   const handleClose = async () => {
     const formate = {
@@ -47,14 +43,13 @@ const useHome = () => {
     } catch (error) {
       toast.error("Internal server error: ");
     } finally {
-      setFormModal("completed");
       navigation("/");
     }
   };
 
   return {
     userRole,
-    formModal,
+    formModal: profileBuilderStep,
     handleClose,
     handleSetUser,
   };
