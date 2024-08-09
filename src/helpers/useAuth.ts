@@ -27,7 +27,8 @@ const useAuth = () => {
     return {
         isAuthenticated: authState?.isAuthenticated ? true : false,
         userRole,
-        profileBuilderStep: userProfile?.LastName.split('_')?.[1],
+        userProfile,
+        profileBuilderStep: userProfile?.LastName.split('_')?.[1] ?? 'completed',
         navigation,
         handleSetUser,
     }
